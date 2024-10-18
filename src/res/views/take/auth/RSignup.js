@@ -3,23 +3,24 @@ import NavBar from '../../../components/NavBar';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);
     if (!cookie) return '';
 
     const parts = cookie.split(';');
-    let onefactorCookiePart;
+    let jobseekrCookiePart;
 
     try {
-        onefactorCookiePart = parts.find((part) => part.trim().startsWith('onefactor='));
+        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
     } catch (e) {
-        onefactorCookiePart = null;
+        jobseekrCookiePart = null;
     }
 
-    if (!onefactorCookiePart) return '';
+    if (!jobseekrCookiePart) return '';
 
-    const onefactorCookieValue = onefactorCookiePart.trim().substring('onefactor='.length);
-    return onefactorCookieValue;
+    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
+    return jobseekrCookieValue;
 };
 
 function RSignup() {
