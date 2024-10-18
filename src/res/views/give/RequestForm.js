@@ -133,10 +133,13 @@ function RequestForm() {
                 alignItems: 'center',
                 height: '100vh',
             }}>
-                <div className="spinner-border" role="status">
+                <div className="spinner-border" role="status" style={{
+                    borderWidth: '0.4rem', // Adjust the value as needed
+                }}>
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>
+
                 : (userData && userData.isReferrerFormSubmitted)
                     ? <Navigate to="/referrer/success" /> : <Container id="signup" className="col-lg-5 mt-5 p-3">
                         <h1>Get Approved to Refer: Unlock Your Referral Potential!</h1>
