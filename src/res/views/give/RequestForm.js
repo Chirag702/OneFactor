@@ -127,7 +127,9 @@ function RequestForm() {
         <>
             <NavBar />
 
-            {isLoading ? null : (userData && userData.isReferrerFormSubmitted)
+            {isLoading ? <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div> : (userData && userData.isReferrerFormSubmitted)
                 ? <Navigate to="/referrer/success" /> : <Container id="signup" className="col-lg-5 mt-5 p-3">
                     <h1>Get Approved to Refer: Unlock Your Referral Potential!</h1>
                     <p>
