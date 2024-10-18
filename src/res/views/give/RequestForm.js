@@ -127,92 +127,100 @@ function RequestForm() {
         <>
             <NavBar />
 
-            {!isLoading ? <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
-            </div> : (userData && userData.isReferrerFormSubmitted)
-                ? <Navigate to="/referrer/success" /> : <Container id="signup" className="col-lg-5 mt-5 p-3">
-                    <h1>Get Approved to Refer: Unlock Your Referral Potential!</h1>
-                    <p>
-                        Before you can start referring candidates to your company, please complete this approval form.
-                        Once approved, you'll be able to refer talented individuals to your dashboard.
-                    </p>
-                    <Container>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group className="mb-1" controlId="companyName">
-                                <Form.Label>Company Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="e.g. Amazon or CareerZen consulting"
-                                    value={formData.companyName}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1" controlId="companyRole">
-                                <Form.Label>Your Role</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="e.g. Talent Acquisition Specialist"
-                                    value={formData.companyRole}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1" controlId="phone">
-                                <Form.Label>Mobile Number</Form.Label>
-                                <Form.Control
-                                    type="tel"
-                                    placeholder="81234 56789"
-                                    value={formData.phone}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1" controlId="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Your company email address"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1" controlId="linkedinProfile">
-                                <Form.Label>LinkedIn Profile</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="LinkedIn Profile URL"
-                                    value={formData.linkedinProfile}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1" controlId="experience">
-                                <Form.Label>Experience (in years)</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="Years of Experience"
-                                    value={formData.experience}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-1 d-flex align-items-center" controlId="agree">
-                                <Form.Check
-                                    type="checkbox"
-                                    label="I agree to the Terms of Service and Privacy Policy."
-                                    required
-                                    style={{ marginRight: '10px' }}
-                                />
-                            </Form.Group>
-                            <Button type="submit" className="btn btn-success mb-1" disabled={isLoading}>
-                                {isLoading ? 'Sending...' : 'Send »'}
-                            </Button>
-                            {error && <p className="text-danger">{error}</p>}
-                        </Form>
+            {!isLoading ? <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>
+                : (userData && userData.isReferrerFormSubmitted)
+                    ? <Navigate to="/referrer/success" /> : <Container id="signup" className="col-lg-5 mt-5 p-3">
+                        <h1>Get Approved to Refer: Unlock Your Referral Potential!</h1>
+                        <p>
+                            Before you can start referring candidates to your company, please complete this approval form.
+                            Once approved, you'll be able to refer talented individuals to your dashboard.
+                        </p>
+                        <Container>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group className="mb-1" controlId="companyName">
+                                    <Form.Label>Company Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="e.g. Amazon or CareerZen consulting"
+                                        value={formData.companyName}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1" controlId="companyRole">
+                                    <Form.Label>Your Role</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="e.g. Talent Acquisition Specialist"
+                                        value={formData.companyRole}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1" controlId="phone">
+                                    <Form.Label>Mobile Number</Form.Label>
+                                    <Form.Control
+                                        type="tel"
+                                        placeholder="81234 56789"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1" controlId="email">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        placeholder="Your company email address"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1" controlId="linkedinProfile">
+                                    <Form.Label>LinkedIn Profile</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="LinkedIn Profile URL"
+                                        value={formData.linkedinProfile}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1" controlId="experience">
+                                    <Form.Label>Experience (in years)</Form.Label>
+                                    <Form.Control
+                                        type="number"
+                                        placeholder="Years of Experience"
+                                        value={formData.experience}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group className="mb-1 d-flex align-items-center" controlId="agree">
+                                    <Form.Check
+                                        type="checkbox"
+                                        label="I agree to the Terms of Service and Privacy Policy."
+                                        required
+                                        style={{ marginRight: '10px' }}
+                                    />
+                                </Form.Group>
+                                <Button type="submit" className="btn btn-success mb-1" disabled={isLoading}>
+                                    {isLoading ? 'Sending...' : 'Send »'}
+                                </Button>
+                                {error && <p className="text-danger">{error}</p>}
+                            </Form>
+                        </Container>
                     </Container>
-                </Container>
             } </>
     );
 }
