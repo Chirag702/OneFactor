@@ -8,16 +8,16 @@ const extractToken = (cookie) => {
     if (!cookie) return '';
 
     const parts = cookie.split(';');
-    const jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
+    const onefactorCookiePart = parts.find((part) => part.trim().startsWith('onefactor='));
 
-    if (!jobseekrCookiePart) return '';
+    if (!onefactorCookiePart) return '';
 
-    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
-    return jobseekrCookieValue;
+    const onefactorCookieValue = onefactorCookiePart.trim().substring('onefactor='.length);
+    return onefactorCookieValue;
 };
 
 const fetchUserData = async (token) => {
-    const response = await fetch('https://api2.jobseekr.in/api/user/profile', {
+    const response = await fetch('https://api2.onefactor.in/api/user/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function RequestForm() {
         }
 
         try {
-            const response = await axios.post('https://api2.jobseekr.in/api/referrers', {
+            const response = await axios.post('https://api2.onefactor.in/api/referrers', {
                 username: formData.email,
                 email: formData.email,
                 password: formData.linkedinProfile, // Assuming you're using the LinkedIn profile as the password

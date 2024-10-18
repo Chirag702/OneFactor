@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
-// Helper function to extract 'jobseekr' token from cookie
+// Helper function to extract 'onefactor' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);
     if (!cookie) return '';
 
     const parts = cookie.split(';');
-    let jobseekrCookiePart;
+    let onefactorCookiePart;
 
     try {
-        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
+        onefactorCookiePart = parts.find((part) => part.trim().startsWith('onefactor='));
     } catch (e) {
-        jobseekrCookiePart = null;
+        onefactorCookiePart = null;
     }
 
-    if (!jobseekrCookiePart) return '';
+    if (!onefactorCookiePart) return '';
 
-    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
-    return jobseekrCookieValue;
+    const onefactorCookieValue = onefactorCookiePart.trim().substring('onefactor='.length);
+    return onefactorCookieValue;
 };
 
 const RSignin = () => {
@@ -32,7 +32,7 @@ const RSignin = () => {
         e.preventDefault(); // Prevent default form submission
         setIsLoading(true);
 
-        const apiUrl = 'https://api2.jobseekr.in/api/auth/signin';
+        const apiUrl = 'https://api2.onefactor.in/api/auth/signin';
         const data = {
             username: email,
             email: email,
@@ -52,13 +52,13 @@ const RSignin = () => {
             if (response.ok) {
                 console.log(responseBody.token);
 
-                const jobseekrToken = extractToken(responseBody.token);
-                console.error(jobseekrToken)
+                const onefactorToken = extractToken(responseBody.token);
+                console.error(onefactorToken)
 
-                if (jobseekrToken) {
-                    console.log('Jobseekr Cookie:', jobseekrToken);
+                if (onefactorToken) {
+                    console.log('onefactor Cookie:', onefactorToken);
                     localStorage.clear();
-                    localStorage.setItem('token', jobseekrToken);
+                    localStorage.setItem('token', onefactorToken);
                     localStorage.setItem('isLoggedIn', 'true');
 
                     // Redirect to another page

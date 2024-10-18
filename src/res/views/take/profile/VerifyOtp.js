@@ -14,7 +14,7 @@ const VerifyOtp = () => {
     const fetchEmail = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('https://api2.jobseekr.in/api/user/profile', {
+            const response = await axios.get('https://api2.onefactor.in/api/user/profile', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -43,7 +43,7 @@ const VerifyOtp = () => {
 
         try {
             const response = await axios.post(
-                'https://api2.jobseekr.in/api/auth/verify/email',
+                'https://api2.onefactor.in/api/auth/verify/email',
                 { "otp": otp },
                 {
                     headers: {

@@ -17,7 +17,7 @@ const JobList = () => {
                 return;
             }
 
-            const response = await fetch('https://api2.jobseekr.in/api/jobs', {
+            const response = await fetch('https://api2.onefactor.in/api/jobs', {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,

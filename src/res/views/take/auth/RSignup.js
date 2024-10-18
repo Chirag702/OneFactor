@@ -8,18 +8,18 @@ const extractToken = (cookie) => {
     if (!cookie) return '';
 
     const parts = cookie.split(';');
-    let jobseekrCookiePart;
+    let onefactorCookiePart;
 
     try {
-        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
+        onefactorCookiePart = parts.find((part) => part.trim().startsWith('onefactor='));
     } catch (e) {
-        jobseekrCookiePart = null;
+        onefactorCookiePart = null;
     }
 
-    if (!jobseekrCookiePart) return '';
+    if (!onefactorCookiePart) return '';
 
-    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
-    return jobseekrCookieValue;
+    const onefactorCookieValue = onefactorCookiePart.trim().substring('onefactor='.length);
+    return onefactorCookieValue;
 };
 
 function RSignup() {
@@ -49,7 +49,7 @@ function RSignup() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('https://api2.jobseekr.in/api/auth/signup', {
+            const response = await axios.post('https://api2.onefactor.in/api/auth/signup', {
                 username: formData.email,
                 email: formData.email,
                 password: formData.password,

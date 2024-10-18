@@ -40,7 +40,7 @@ const InitProfile = () => {
 
         try {
             const response = await axios.post(
-                "https://api2.jobseekr.in/api/user/init/profile",
+                "https://api2.onefactor.in/api/user/init/profile",
                 {
                     fname,
                     lname,
