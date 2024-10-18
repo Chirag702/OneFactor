@@ -53,7 +53,7 @@ const RSignin = () => {
                 console.log(responseBody.token);
 
                 const onefactorToken = await extractToken(responseBody.token);
-
+                console.log(onefactorToken);
                 if (onefactorToken) {
                     console.log('onefactor Cookie:', onefactorToken);
                     localStorage.clear();
