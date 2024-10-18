@@ -52,8 +52,7 @@ const RSignin = () => {
             if (response.ok) {
                 console.log(responseBody.token);
 
-                const onefactorToken = extractToken(responseBody.token);
-                console.error(onefactorToken)
+                const onefactorToken = await extractToken(responseBody.token);
 
                 if (onefactorToken) {
                     console.log('onefactor Cookie:', onefactorToken);
