@@ -3,24 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
 // Helper function to extract 'onefactor' token from cookie
+// Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);
     if (!cookie) return '';
 
     const parts = cookie.split(';');
-    let onefactorCookiePart;
+    let jobseekrCookiePart;
 
     try {
-        onefactorCookiePart = parts.find((part) => part.trim().startsWith('onefactor='));
+        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
     } catch (e) {
-        onefactorCookiePart = null;
+        jobseekrCookiePart = null;
     }
 
-    if (!onefactorCookiePart) return '';
+    if (!jobseekrCookiePart) return '';
 
-    const onefactorCookieValue = onefactorCookiePart.trim().substring('onefactor='.length);
-    return onefactorCookieValue;
+    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
+    return jobseekrCookieValue;
 };
+
 
 const RSignin = () => {
     const [email, setEmail] = useState('');
