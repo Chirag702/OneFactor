@@ -127,7 +127,7 @@ function RequestForm() {
         <>
             <NavBar />
 
-            {!isLoading ? <div style={{
+            {isLoading ? <div style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
