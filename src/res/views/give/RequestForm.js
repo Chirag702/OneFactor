@@ -134,7 +134,7 @@ function RequestForm() {
                 height: '100vh',
             }}>
                 <div className="spinner-border" role="status" style={{
-                    borderWidth: '0.4rem', // Adjust the value as needed
+                    borderWidth: '0.2rem', // Adjust the value as needed
                 }}>
                     <span className="sr-only">Loading...</span>
                 </div>
