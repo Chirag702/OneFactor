@@ -74,7 +74,7 @@ const JobList = () => {
                             {job.location || 'N/A'}
                         </p>
                         <p className="d-none d-lg-inline">
-                            {job.description.length > 80 ? job.description.substring(0, 80) + '...' : job.description}
+                            {job.description.length > 120 ? job.description.substring(0, 120) + '...' : job.description}
 
 
                         </p>
