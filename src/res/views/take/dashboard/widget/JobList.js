@@ -74,7 +74,9 @@ const JobList = () => {
                             {job.location || 'N/A'}
                         </p>
                         <p className="d-none d-lg-inline">
-                            In a world where technology never stands still, we understand that dedication to our clients' success and innovation matter.
+                            <h3>{job.description.length > 20 ? job.description.substring(0, 20) + '...' : job.description}</h3>
+
+
                         </p>
                     </div>
                     <div className="jobDetailButton ml-auto pr-2">
