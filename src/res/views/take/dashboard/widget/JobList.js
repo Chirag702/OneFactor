@@ -14,6 +14,7 @@ const JobList = () => {
             if (!token) {
                 // If no token, redirect to the signup page
                 setLoading(false);
+                setError('No token found, please log in.');
                 return;
             }
 
@@ -21,11 +22,10 @@ const JobList = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
-
                 },
             });
 
-            if (response.status === 200) {
+            if (response.ok) {
                 const data = await response.json();
                 setJobs(data); // Update jobs in state
                 setLoading(false); // Set loading to false
@@ -57,11 +57,11 @@ const JobList = () => {
     // JSX to render job listings
     return (
         <div className="jobList">
-            {jobs.map((job, index) => (
-                <div key={index} className="jobPost align-items-start">
+            {jobs.map((job) => (
+                <div key={job.id} className="jobPost align-items-start">
                     <div className="companyIcon">
                         <img
-                            src={job.companyDetails.logoUrl || 'default-logo.png'} // Use job-specific logo or fallback
+                            src={job.companyDetails?.logoUrl || 'default-logo.png'} // Use job-specific logo or fallback
                             alt="company logo"
                             className="img-fluid"
                             style={{ maxWidth: "100px" }}
@@ -74,7 +74,7 @@ const JobList = () => {
                             {job.location || 'N/A'}
                         </p>
                         <p className="d-none d-lg-inline">
-                            In a world where technology never stands still, we understand that, dedication to our clients success, innovation that matters
+                            In a world where technology never stands still, we understand that dedication to our clients' success and innovation matter.
                         </p>
                     </div>
                     <div className="jobDetailButton ml-auto pr-2">
