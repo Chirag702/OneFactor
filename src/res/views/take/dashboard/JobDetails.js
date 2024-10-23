@@ -25,7 +25,7 @@ const JobDetails = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5" style={{ backgroundColor: "white" }}>
             <div className="row">
                 {/* Job Details Column */}
                 <div className="col-md-6 mb-4">
