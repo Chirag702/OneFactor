@@ -2,127 +2,80 @@ import React from "react";
 import NavBar from "../../../components/NavBar";
 
 const JobDetails = () => {
-    // Job details constant
-    const jobDetails = {
-        position: "Full Stack Engineer 3",
-        type: "Full-time",
-        industry: "IT",
-        location: "Bangalore",
-        postedOn: "2024-08-21",
-        technologies: ["Java", "Spring Boot", "Rest API", "Docker", "Kubernetes"],
-        experienceLevel: "Senior",
-        description:
-            "We are looking for a full-stack engineer with experience in Java, Spring Boot, and Docker. You will be working with cutting-edge technologies to deliver high-quality software solutions.",
-        company: {
-            name: "Mphasis",
-            industry: "IT Services and IT Consulting",
-            employees: "10,001+",
-            location: "Bangalore, Karnataka",
-            logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGA6s2g...",
-            website: "https://www.mphasis.com/",
-            about:
-                "A leading applied technology services company with a focus on IT services and consulting, delivering innovative solutions to clients worldwide.",
-        },
-    };
-
     return (
         <>
-
             <NavBar />
-            <div className="container mt-5" style={{ backgroundColor: "white" }}>
+            <div className="container container-fluid">
                 <div className="row">
-                    {/* Job Details Column */}
-                    <div className="col-xl-7 col-lg-8">
-                        {/* Job Single */}
-                        <div className="single-job-items mb-50">
-                            <div className="job-items">
-                                <div className="company-img company-img-details">
-                                    <a href="#">
-                                        <img src="assets/img/icon/job-list1.png" alt="Company Logo" />
-                                    </a>
-                                </div>
-                                <div className="job-tittle">
-                                    <a href="#">
-                                        <h4>Digital Marketer</h4>
-                                    </a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li>
-                                            <i className="fas fa-map-marker-alt"></i>Athens, Greece
-                                        </li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Job Single End */}
-
-                        <div className="job-post-details">
-                            <div className="post-details1 mb-50">
-                                {/* Small Section Title */}
-                                <div className="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-                                <p>
-                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more or less normal distribution of letters, as opposed to using content here, making it look like readable English.
-                                </p>
-                            </div>
-                            <div className="post-details2 mb-50">
-                                {/* Small Section Title */}
-                                <div className="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                                <ul>
-                                    <li>System Software Development</li>
-                                    <li>Mobile Application in iOS/Android/Tizen or other platforms</li>
-                                    <li>Research and code libraries, APIs, and frameworks</li>
-                                    <li>Strong knowledge of software development life cycle</li>
-                                    <li>Strong problem-solving and debugging skills</li>
-                                </ul>
-                            </div>
-                            <div className="post-details2 mb-50">
-                                {/* Small Section Title */}
-                                <div className="small-section-tittle">
-                                    <h4>Education + Experience</h4>
-                                </div>
-                                <ul>
-                                    <li>3 or more years of professional design experience</li>
-                                    <li>Direct response email experience</li>
-                                    <li>Ecommerce website design experience</li>
-                                    <li>Familiarity with mobile and web apps preferred</li>
-                                    <li>Experience using Invision a plus</li>
-                                </ul>
-                            </div>
+                    {/* Left Side: Company Details */}
+                    <div className="filterAndAdds p-3 order-lg-1 order-2 col-lg-4 bg-light">
+                        <div className="filter-section">
+                            <h4>Quick tip</h4>
+                            <p>
+                                Since not all companies will go ahead, we encourage you to apply to several companies.
+                            </p>
+                            <p>
+                                However, avoid applying if you don't want to interview, as any interview backouts will be shown to other companies!
+                            </p>
                         </div>
                     </div>
-                    {/* Company Details Column */}
-                    <div className="col-md-5">
-                        <h3 className="mb-3">{jobDetails.company.name}</h3>
-                        <p><strong>Industry:</strong> {jobDetails.company.industry}</p>
-                        <p><strong>Employees:</strong> {jobDetails.company.employees}</p>
-                        <p><strong>Location:</strong> {jobDetails.company.location}</p>
-                        <p>{jobDetails.company.about}</p>
-                        {/* Company Logo */}
-                        <div className="mb-3">
-                            <img
-                                src={jobDetails.company.logo}
-                                alt={`${jobDetails.company.name} Logo`}
-                                className="img-fluid rounded"
-                                style={{ width: "100px", height: "100px" }}
-                            />
+
+                    {/* Right Side: Job Details */}
+                    <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-lg-8">
+                        <div className="jobList">
+                            <div className="jobPost align-items-start border p-3 mb-3">
+                                <div className="companyIcon">
+                                    <img
+                                        src="https://media.licdn.com/dms/image/v2/C4D0BAQGA6s2gCDu-MA/company-logo_200_200/company-logo_200_200/0/1630508225160/mphasis_logo?e=1737590400&amp;v=beta&amp;t=WqYBITVje9-fcZnDhvGSa5Rr9eIqkqVzu7MFT3MuefM"
+                                        alt="company logo"
+                                        className="img-fluid"
+                                        style={{ maxWidth: "100px" }}
+                                    />
+                                </div>
+                                <div className="description ms-3">
+                                    <h3>Software Engineer</h3>
+                                    <p>
+                                        <span className="d-none d-lg-inline">Job available in </span>Bangalore
+                                    </p>
+                                    <p>
+                                        <strong>Technical Skills:</strong>
+                                        <br />
+                                        • Exposure to ServiceNow administration and development of ITSM module
+                                        <br />
+                                        • Experience working with Business Process Management (BPM)
+                                        <br />
+                                        • Knowledge of ITIL framework
+                                        <br />
+                                        • Strong understanding of Java and web services
+                                    </p>
+                                    <p>
+                                        <strong>Job Description:</strong>
+                                        <br />
+                                        We are seeking a skilled Software Engineer to join our team. The successful candidate will be responsible for developing and maintaining software applications, working collaboratively with cross-functional teams to deliver high-quality products.
+                                    </p>
+                                    <p>
+                                        <strong>Responsibilities:</strong>
+                                        <ul>
+                                            <li>Develop and maintain software applications</li>
+                                            <li>Collaborate with other developers and product teams</li>
+                                            <li>Participate in code reviews and maintain coding standards</li>
+                                            <li>Test and deploy applications and systems</li>
+                                            <li>Revise, update, and refactor code as necessary</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                <div className="jobDetailButton ms-auto">
+                                    <button type="button" className="btn btn-primary">
+                                        Apply
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <a
-                            href={jobDetails.company.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-link"
-                        >
-                            Visit Company Website
-                        </a>
                     </div>
                 </div>
             </div>
         </>
+
     );
 };
 
