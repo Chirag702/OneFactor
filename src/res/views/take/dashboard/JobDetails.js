@@ -31,7 +31,7 @@ const JobDetails = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setJobs(data.content); // Assuming the API returns { content: { title, skills, description, etc. } }
+                setJobs(data); // Assuming the API returns { content: { title, skills, description, etc. } }
             } else {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
