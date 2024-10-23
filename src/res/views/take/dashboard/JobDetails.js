@@ -9,7 +9,7 @@ const JobDetails = () => {
             <div className="container-fluid">
                 <div className="row">
                     {/* Left Side: Company Details */}
-                    <div className="col-md-4 col-lg-3 filterAndAdds p-3 bg-light">
+                    <div className="col-md-4 col-lg-3 filterAndAdds bg-light">
                         <div className="filter-section">
                             <h4>Quick tip</h4>
                             <p>
@@ -27,9 +27,9 @@ const JobDetails = () => {
                     </div>
 
                     {/* Right Side: Job Details */}
-                    <div className="col-md-4 col-lg-3 jobDetails p-3 bg-white">
+                    <div className="col-md-4 col-lg-3 jobDetails bg-white">
                         <div className="jobList">
-                            <div className="bg-tex p-3 mb-3">
+                            <div className="bg-tex mb-3">
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
                                     <p>
