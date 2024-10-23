@@ -74,7 +74,7 @@ const JobDetails = () => {
                             <img
                                 src={jobs.companyDetails.logoUrl}
                                 alt={jobs.companyDetails.companyName}
-                                style={{ marginRight: '10px', width: '50px', height: '50px' }}
+                                style={{ marginRight: '10px', width: '20px', height: '20px' }}
                             />
                             <span style={{ fontSize: '16px' }}>{jobs.companyDetails.companyName}</span>
                         </div>
