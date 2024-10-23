@@ -6,7 +6,7 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container-fluid">
+            <div className="container-fluid container">
                 <div className="row d-flex align-items-start">
                     {/* Left Side: Company Details */}
                     <div className="col-md-4 col-lg-3 filterAndAdds bg-light p-3">
@@ -24,7 +24,7 @@ const JobDetails = () => {
 
 
                     {/* Right Side: Job Details */}
-                    <div className="col-md-4 col-lg-3 jobDetails bg-white p-3">
+                    <div className="col-md-8 col-lg-9 filterAndAdds bg-light p-3">
                         <div className="jobList">
                             <div className="bg-tex mb-3">
                                 <div className="description ms-3">
