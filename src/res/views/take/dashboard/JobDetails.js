@@ -25,7 +25,6 @@ const JobDetails = () => {
                     <div id="availableJobs" className="order-lg-2 order-1 col-lg-8">
                         <div className="jobList">
                             <div className="bg-tex p-3 mb-3">
-
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
                                     <p>
@@ -58,7 +57,6 @@ const JobDetails = () => {
                                         <li>Revise, update, and refactor code as necessary</li>
                                     </ul>
                                 </div>
-
                             </div>
                         </div>
                     </div>
