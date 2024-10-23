@@ -4,14 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const JobDetails = () => {
     const { jobId } = useParams();
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState(null); // Initially set to null to handle empty state
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [page, setPage] = useState(0); // Current page
-    const [totalPages, setTotalPages] = useState(0); // Total number of pages
     const navigate = useNavigate();
 
     const fetchJobById = async (jobId) => {
+        setLoading(true); // Ensure loading is true while fetching data
+        setError(null); // Reset error before fetching new data
+
         try {
             const token = localStorage.getItem('token');
 
@@ -30,20 +31,22 @@ const JobDetails = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setJobs(data.content); // Assuming the API returns { content: [...] }
+                setJobs(data.content); // Assuming the API returns { content: { title, skills, description, etc. } }
             } else {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
         } catch (error) {
             setError(error.message);
-            setLoading(false);
+        } finally {
+            setLoading(false); // Ensure loading is set to false after fetch is complete
         }
     };
 
-    // useEffect to trigger API call when the component mounts or page changes
     useEffect(() => {
-        fetchJobById(jobId);
-    }, [jobId]);
+        if (jobId) {
+            fetchJobById(jobId);
+        }
+    }, [jobId]); // Add jobId to dependency array to refetch if jobId changes
 
     // Handle loading state
     if (loading) {
@@ -55,13 +58,14 @@ const JobDetails = () => {
         return <div>Error: {error}</div>;
     }
 
-
-
+    // If no job details are found
+    if (!jobs) {
+        return <div>No job details found.</div>;
+    }
 
     return (
         <>
             <NavBar />
-
             <div className="container-fluid d-flex justify-content-center align-items-center pt-4">
                 <div className="col-lg-7 col-sm-12 bg-white">
                     {/* Right Side: Job Details */}
