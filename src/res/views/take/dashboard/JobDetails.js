@@ -5,6 +5,7 @@ const JobDetails = () => {
     return (
         <>
             <NavBar />
+
             <div className="container container-fluid">
                 <div className="row">
                     {/* Left Side: Company Details */}
@@ -63,8 +64,8 @@ const JobDetails = () => {
                     </div>
                 </div>
             </div>
-        </div >
         </>
+
 
     );
 };
