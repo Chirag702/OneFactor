@@ -38,7 +38,7 @@ const PrivateRoute = ({ children }) => {
                 setError('No token found');
                 setLoading(false);
                 // Redirect to login page and store the current path for redirection after login
-                navigate('/r/signin', { state: { from: location.pathname } });
+                navigate('/', { state: { from: location.pathname } });
                 return;
             }
 
@@ -49,7 +49,7 @@ const PrivateRoute = ({ children }) => {
             } catch (err) {
                 setError(err.message);
                 localStorage.clear(); // Clear localStorage on error (like invalid token)
-                navigate('/r/signin', { state: { from: location.pathname } });
+                navigate('/', { state: { from: location.pathname } });
             } finally {
                 setLoading(false);
             }
@@ -68,7 +68,7 @@ const PrivateRoute = ({ children }) => {
 
     if (!userData) {
         localStorage.clear();
-        navigate('/r/signin', { state: { from: location.pathname } });
+        navigate('/', { state: { from: location.pathname } });
         return null;
     }
 
