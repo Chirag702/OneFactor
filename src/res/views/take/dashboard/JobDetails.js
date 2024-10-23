@@ -6,7 +6,7 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+            <div className="container-fluid d-flex justify-content-center align-items-center">
                 <div className="col-lg-7 col-sm-12 bg-white">
                     {/* Right Side: Job Details */}
                     <div className="description ms-3">
