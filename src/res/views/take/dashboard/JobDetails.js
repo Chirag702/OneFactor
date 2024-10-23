@@ -6,7 +6,7 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container-fluid container bg-light">
+            <div className="container-fluid container bg-white">
 
 
 
