@@ -6,10 +6,8 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container-fluid container ">
-
-                <div className="col-lg-8 col-sm-12 bg-white">
-
+            <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+                <div className="col-lg-8 col-sm-12 bg-white p-4">
                     {/* Right Side: Job Details */}
                     <div className="description ms-3">
                         <h3>Software Engineer</h3>
