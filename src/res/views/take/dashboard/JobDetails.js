@@ -25,7 +25,7 @@ const JobDetails = () => {
 
                     {/* Right Side: Job Details */}
                     <div className="col-md-8 col-lg-9 filterAndAdds bg-light p-3">
-                        <div className="jobList">
+                        <div>
                             <div className="bg-tex mb-3">
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
