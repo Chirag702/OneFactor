@@ -1,28 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-
-// Function to fetch user data from the REST API
-const fetchUserData = async (token) => {
-    const response = await fetch('https://api2.onefactor.in/api/user/profile', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-    });
-
-    if (!response.ok) {
-        if (response.status === 401) {
-            throw new Error("Unauthorized");
-        } else {
-            const errorText = await response.text();
-            throw new Error(errorText);
-        }
-    }
-
-    return response.json(); // Return JSON if response is ok
-};
-
 const PrivateRoute = ({ children }) => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -37,7 +12,7 @@ const PrivateRoute = ({ children }) => {
             if (!token) {
                 setError('No token found');
                 setLoading(false);
-                // Redirect to login page and store the current path for redirection after login
+                // Store the attempted URL in the state and redirect to login
                 navigate('/r/signin', { state: { from: location.pathname } });
                 return;
             }
@@ -98,5 +73,3 @@ const PrivateRoute = ({ children }) => {
 
     return children;
 };
-
-export default PrivateRoute;

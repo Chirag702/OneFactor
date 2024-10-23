@@ -63,7 +63,9 @@ const RSignin = () => {
                     localStorage.setItem('isLoggedIn', 'true');
 
                     // Redirect to another page
-                    navigate('/home'); // Replace with your desired route
+
+                    // Redirect back to the intended page or home if no path is stored
+                    navigate(from, { replace: true });
                 } else {
                     console.log('Token not found');
                 }
