@@ -1,7 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../../../components/NavBar";
+import { useParams } from "react-router-dom";
 
 const JobDetails = () => {
+    const { jobId } = useParams();
+    const [jobs, setJobs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [page, setPage] = useState(0); // Current page
+    const [totalPages, setTotalPages] = useState(0); // Total number of pages
+
+    const fetchJobById = async (jobId) => {
+        try {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                setLoading(false);
+                setError('No token found, please log in.');
+                return;
+            }
+
+            const response = await fetch(`https://api2.onefactor.in/api/jobs/${jobId}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setJobs(data.content); // Assuming the API returns { content: [...] }
+            } else {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+        }
+    };
+
+    // useEffect to trigger API call when the component mounts or page changes
+    useEffect(() => {
+        fetchJobById(jobId);
+    }, [jobId]);
+
+    // Handle loading state
+    if (loading) {
+        return <div>Loading jobs...</div>;
+    }
+
+    // Handle any errors that occurred during the fetch
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+
+
+
     return (
         <>
             <NavBar />
@@ -10,7 +65,7 @@ const JobDetails = () => {
                 <div className="col-lg-7 col-sm-12 bg-white">
                     {/* Right Side: Job Details */}
                     <div className="description ms-3">
-                        <h3>Software Engineer</h3>
+                        <h3>{jobs.title}</h3>
                         <p>
                             <span className="d-none d-lg-inline">Job available in </span>Bangalore
                         </p>
