@@ -22,10 +22,9 @@ const JobDetails = () => {
                     </div>
 
                     {/* Right Side: Job Details */}
-                    <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-lg-8">
+                    <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-12">
                         <div className="jobList">
                             <div className="jobPost align-items-start border p-3 mb-3">
-
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
                                     <p>
@@ -58,7 +57,6 @@ const JobDetails = () => {
                                         <li>Revise, update, and refactor code as necessary</li>
                                     </ul>
                                 </div>
-
                             </div>
                         </div>
                     </div>
