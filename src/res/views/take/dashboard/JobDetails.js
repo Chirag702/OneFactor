@@ -1,6 +1,6 @@
 import React from "react";
 
-const JobDescription = () => {
+const JobDetails = () => {
     return (
         <div className="container mt-5">
             <div className="row bg-light p-4 shadow rounded">
