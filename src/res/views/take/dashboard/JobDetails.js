@@ -7,9 +7,9 @@ const JobDetails = () => {
             <NavBar />
 
             <div className="container-fluid">
-                <div className="row">
+                <div className="row d-flex justify-content-between align-items-start">
                     {/* Left Side: Company Details */}
-                    <div className="col-md-4 col-lg-3 filterAndAdds bg-light">
+                    <div className="col-md-4 col-lg-3 filterAndAdds bg-light p-3">
                         <div className="filter-section">
                             <h4>Quick tip</h4>
                             <p>
@@ -22,12 +22,12 @@ const JobDetails = () => {
                     </div>
 
                     {/* Middle Container */}
-                    <div className="col-md-4 col-lg-6">
+                    <div className="col-md-4 col-lg-6 mx-auto">
                         {/* Your middle content here */}
                     </div>
 
                     {/* Right Side: Job Details */}
-                    <div className="col-md-4 col-lg-3 jobDetails bg-white">
+                    <div className="col-md-4 col-lg-3 jobDetails bg-white p-3">
                         <div className="jobList">
                             <div className="bg-tex mb-3">
                                 <div className="description ms-3">
