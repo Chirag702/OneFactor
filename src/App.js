@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, Route, Routes, Navigate } from 'react-router-dom';
+import { useNavigate, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import RSignup from './res/views/take/auth/RSignup';
 import RSignin from './res/views/take/auth/RSignin';
@@ -14,17 +14,20 @@ import JobDetails from './res/views/take/dashboard/JobDetails';
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Function to check token existence
   const checkToken = () => localStorage.getItem('token');
-  const checkIsEmailVerified = () => localStorage.getItem("isEmailVerified1") || false;
+  const checkIsEmailVerified = () => localStorage.getItem("isEmailVerified") || false;
+
+  const redirectAfterLogin = location.state?.from || '/home'; // Check if there's a redirect route stored
 
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={checkToken() ? <Navigate to="/home" /> : <HomeScreen />} />
-      <Route path="/r/signup" element={checkToken() ? <Navigate to="/home" /> : <RSignup />} />
-      <Route path="/r/signin" element={checkToken() ? <Navigate to="/home" /> : <RSignin />} />
+      <Route path="/" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <HomeScreen />} />
+      <Route path="/r/signup" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignup />} />
+      <Route path="/r/signin" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignin />} />
 
       {/* Protected Routes (using PrivateRoute) */}
       <Route
@@ -62,8 +65,6 @@ function App() {
           </PrivateRoute>
         }
       />
-
-
 
       <Route
         path="/job/details"

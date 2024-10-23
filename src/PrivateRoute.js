@@ -11,10 +11,9 @@ const fetchUserData = async (token) => {
         },
     });
 
-    console.log(token);
     if (!response.ok) {
         if (response.status === 401) {
-            throw new Error("Unauthorized"); // Throw an error to be caught in the try-catch
+            throw new Error("Unauthorized");
         } else {
             const errorText = await response.text();
             throw new Error(errorText);
@@ -38,7 +37,8 @@ const PrivateRoute = ({ children }) => {
             if (!token) {
                 setError('No token found');
                 setLoading(false);
-                navigate('/'); // Navigate to login if no token is found
+                // Redirect to login page and store the current path for redirection after login
+                navigate('/r/signin', { state: { from: location.pathname } });
                 return;
             }
 
@@ -49,57 +49,53 @@ const PrivateRoute = ({ children }) => {
             } catch (err) {
                 setError(err.message);
                 localStorage.clear(); // Clear localStorage on error (like invalid token)
-                navigate('/'); // Navigate to login if an error occurs
+                navigate('/r/signin', { state: { from: location.pathname } });
             } finally {
                 setLoading(false);
             }
         };
 
         getUserData();
-    }, [navigate]); // Add navigate to the dependency array to avoid missing navigation ref
+    }, [navigate, location.pathname]);
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
     if (error) {
-        return null; // Return nothing as the navigation to '/' will handle the redirect
+        return null;
     }
 
     if (!userData) {
         localStorage.clear();
-        navigate('/'); // Redirect to login if user data is missing
+        navigate('/r/signin', { state: { from: location.pathname } });
         return null;
     }
 
     const { fname, lname, gender } = userData;
     const isEmailVerified = localStorage.getItem('isEmailVerified') === 'true';
 
-    // Handle access to /verifyOtp
     if (location.pathname === '/verifyOtp') {
         if (!isEmailVerified) {
-            return children; // Allow access to verifyOtp if email is not verified
+            return children;
         }
-        return <Navigate to="/home" replace />; // Redirect to home if email is verified
+        return <Navigate to="/home" replace />;
     }
 
-    // If user is on /initProfile
     if (location.pathname === '/initProfile') {
         if (!isEmailVerified) {
-            return <Navigate to="/verifyOtp" replace />; // Redirect to verifyOtp if email is not verified
+            return <Navigate to="/verifyOtp" replace />;
         }
         if (fname && lname && gender) {
-            return <Navigate to="/home" replace />; // Redirect to home if email is verified and profile complete
+            return <Navigate to="/home" replace />;
         }
-        return children; // Render initProfile if profile is incomplete
+        return children;
     }
 
-    // Redirect to initProfile if profile details are incomplete
     if (!fname || !lname || !gender) {
         return <Navigate to="/initProfile" replace />;
     }
 
-    // Render the protected route's content if all conditions are met
     return children;
 };
 
