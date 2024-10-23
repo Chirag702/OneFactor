@@ -58,6 +58,7 @@ const JobList = () => {
     return (
         <div className="jobList">
             {jobs.map((job) => (
+
                 <div key={job.id} className="jobPost align-items-start">
                     <div className="companyIcon">
                         <img
@@ -80,7 +81,9 @@ const JobList = () => {
                         </p>
                     </div>
                     <div className="jobDetailButton ml-auto pr-2">
-                        <Button variant="primary" className="d-none d-lg-inline">
+                        <Button onClick={() => {
+                            window.open(job.applicationLink, '_blank');
+                        }} variant="primary" className="d-none d-lg-inline">
                             Apply
                         </Button>
                     </div>
