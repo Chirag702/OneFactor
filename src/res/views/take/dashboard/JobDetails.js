@@ -24,7 +24,7 @@ const JobDetails = () => {
                     {/* Right Side: Job Details */}
                     <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-lg-8">
                         <div className="jobList">
-                            <div className="border p-3 mb-3">
+                            <div className="bg-white p-3 mb-3">
 
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
