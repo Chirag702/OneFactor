@@ -6,7 +6,7 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container container-fluid">
+            <div className="container-fluid">
                 <div className="row">
                     {/* Left Side: Company Details */}
                     <div className="filterAndAdds p-3 order-lg-1 order-2 col-lg-4 bg-light">
@@ -49,14 +49,14 @@ const JobDetails = () => {
                                     </p>
                                     <p>
                                         <strong>Responsibilities:</strong>
-                                        <ul>
-                                            <li>Develop and maintain software applications</li>
-                                            <li>Collaborate with other developers and product teams</li>
-                                            <li>Participate in code reviews and maintain coding standards</li>
-                                            <li>Test and deploy applications and systems</li>
-                                            <li>Revise, update, and refactor code as necessary</li>
-                                        </ul>
                                     </p>
+                                    <ul>
+                                        <li>Develop and maintain software applications</li>
+                                        <li>Collaborate with other developers and product teams</li>
+                                        <li>Participate in code reviews and maintain coding standards</li>
+                                        <li>Test and deploy applications and systems</li>
+                                        <li>Revise, update, and refactor code as necessary</li>
+                                    </ul>
                                 </div>
 
                             </div>
@@ -65,8 +65,6 @@ const JobDetails = () => {
                 </div>
             </div>
         </>
-
-
     );
 };
 
