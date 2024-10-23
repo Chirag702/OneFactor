@@ -109,10 +109,10 @@ const JobList = () => {
                     </div>
                 </div>
             ))}
-            {/* Pagination Controls */}
-            <div className="pagination">
+            <div className="pagination" style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
                 {createPagination()}
             </div>
+
         </div>
     );
 };
