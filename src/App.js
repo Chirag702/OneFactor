@@ -62,6 +62,16 @@ function App() {
         }
       />
 
+
+
+      <Route
+        path="/job/details"
+        element={
+          <PrivateRoute>
+            <RequestForm />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/referrer/success"
         element={
