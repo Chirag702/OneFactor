@@ -21,10 +21,7 @@ const JobDetails = () => {
                         </div>
                     </div>
 
-                    {/* Middle Container */}
-                    <div className="col-md-4 col-lg-6 mx-auto">
-                        {/* Your middle content here */}
-                    </div>
+
 
                     {/* Right Side: Job Details */}
                     <div className="col-md-4 col-lg-3 jobDetails bg-white p-3">
