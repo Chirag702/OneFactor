@@ -10,6 +10,7 @@ import VerifyOtp from './res/views/take/profile/VerifyOtp';
 import PrivateRoute from './PrivateRoute';
 import RequestForm from './res/views/give/RequestForm';
 import Success from './res/views/give/Success';
+import JobDetails from './res/views/take/dashboard/JobDetails';
 
 function App() {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ function App() {
         path="/job/details"
         element={
           <PrivateRoute>
-            <RequestForm />
+            <JobDetails />
           </PrivateRoute>
         }
       />
