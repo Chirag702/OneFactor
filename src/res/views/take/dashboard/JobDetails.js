@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../../components/NavBar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const JobDetails = () => {
     const { jobId } = useParams();
@@ -9,6 +9,7 @@ const JobDetails = () => {
     const [error, setError] = useState(null);
     const [page, setPage] = useState(0); // Current page
     const [totalPages, setTotalPages] = useState(0); // Total number of pages
+    const navigate = useNavigate();
 
     const fetchJobById = async (jobId) => {
         try {

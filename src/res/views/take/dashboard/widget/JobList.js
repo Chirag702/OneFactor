@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const JobList = () => {
     const [jobs, setJobs] = useState([]);
@@ -7,7 +8,7 @@ const JobList = () => {
     const [error, setError] = useState(null);
     const [page, setPage] = useState(0); // Current page
     const [totalPages, setTotalPages] = useState(0); // Total number of pages
-
+    const navigate = useNavigate();
     // Function to fetch jobs from the API with pagination
     const fetchJobs = async (pageNumber) => {
         try {
@@ -103,7 +104,7 @@ const JobList = () => {
                         </p>
                     </div>
                     <div className="jobDetailButton ml-auto pr-2">
-                        <Button onClick={() => { Navigate("/job/details") }} variant="primary" className="d-none d-lg-inline">
+                        <Button onClick={() => { navigate("/job/details") }} variant="primary" className="d-none d-lg-inline">
                             Apply
                         </Button>
                     </div>
