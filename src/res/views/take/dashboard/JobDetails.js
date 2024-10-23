@@ -10,7 +10,7 @@ const JobDetails = () => {
                 <div className="row d-flex align-items-start">
                     {/* Left Side: Company Details */}
                     <div className="col-md-4 col-lg-3 filterAndAdds2 bg-light p-3">
-                        <div className="filter-section">
+                        <div className="filter-section ms-3">
                             <h4>Quick tip</h4>
                             <p>
                                 Since not all companies will go ahead, we encourage you to apply to several companies.
