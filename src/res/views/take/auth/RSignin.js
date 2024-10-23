@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
 // Helper function to extract 'onefactor' token from cookie
@@ -25,6 +25,8 @@ const extractToken = (cookie) => {
 
 
 const RSignin = () => {
+    const location = useLocation();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
