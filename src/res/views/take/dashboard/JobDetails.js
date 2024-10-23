@@ -7,7 +7,7 @@ const JobDetails = () => {
             <NavBar />
 
             <div className="container-fluid">
-                <div className="row d-flex justify-content-between align-items-start">
+                <div className="row d-flex align-items-start">
                     {/* Left Side: Company Details */}
                     <div className="col-md-4 col-lg-3 filterAndAdds bg-light p-3">
                         <div className="filter-section">
