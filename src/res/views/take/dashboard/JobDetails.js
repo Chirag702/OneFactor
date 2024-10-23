@@ -32,25 +32,71 @@ const JobDetails = () => {
             <div className="container mt-5" style={{ backgroundColor: "white" }}>
                 <div className="row">
                     {/* Job Details Column */}
-                    <div className="col-md-6 mb-4">
-                        <h2 className="mb-3">{jobDetails.position}</h2>
-                        <p>
-                            <strong>Position:</strong> {jobDetails.type} | {jobDetails.industry} | {jobDetails.location}
-                        </p>
-                        <p><strong>Posted on:</strong> {jobDetails.postedOn}</p>
-                        <p>
-                            <strong>Technologies:</strong> {jobDetails.technologies.join(", ")}
-                        </p>
-                        <p><strong>Experience Level:</strong> {jobDetails.experienceLevel}</p>
-                        <p>{jobDetails.description}</p>
-                        <div className="btn-group">
-                            <button className="btn btn-primary">Edit</button>
-                            <button className="btn btn-danger">Delete</button>
+                    <div className="col-xl-7 col-lg-8">
+                        {/* Job Single */}
+                        <div className="single-job-items mb-50">
+                            <div className="job-items">
+                                <div className="company-img company-img-details">
+                                    <a href="#">
+                                        <img src="assets/img/icon/job-list1.png" alt="Company Logo" />
+                                    </a>
+                                </div>
+                                <div className="job-tittle">
+                                    <a href="#">
+                                        <h4>Digital Marketer</h4>
+                                    </a>
+                                    <ul>
+                                        <li>Creative Agency</li>
+                                        <li>
+                                            <i className="fas fa-map-marker-alt"></i>Athens, Greece
+                                        </li>
+                                        <li>$3500 - $4000</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Job Single End */}
+
+                        <div className="job-post-details">
+                            <div className="post-details1 mb-50">
+                                {/* Small Section Title */}
+                                <div className="small-section-tittle">
+                                    <h4>Job Description</h4>
+                                </div>
+                                <p>
+                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more or less normal distribution of letters, as opposed to using content here, making it look like readable English.
+                                </p>
+                            </div>
+                            <div className="post-details2 mb-50">
+                                {/* Small Section Title */}
+                                <div className="small-section-tittle">
+                                    <h4>Required Knowledge, Skills, and Abilities</h4>
+                                </div>
+                                <ul>
+                                    <li>System Software Development</li>
+                                    <li>Mobile Application in iOS/Android/Tizen or other platforms</li>
+                                    <li>Research and code libraries, APIs, and frameworks</li>
+                                    <li>Strong knowledge of software development life cycle</li>
+                                    <li>Strong problem-solving and debugging skills</li>
+                                </ul>
+                            </div>
+                            <div className="post-details2 mb-50">
+                                {/* Small Section Title */}
+                                <div className="small-section-tittle">
+                                    <h4>Education + Experience</h4>
+                                </div>
+                                <ul>
+                                    <li>3 or more years of professional design experience</li>
+                                    <li>Direct response email experience</li>
+                                    <li>Ecommerce website design experience</li>
+                                    <li>Familiarity with mobile and web apps preferred</li>
+                                    <li>Experience using Invision a plus</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
                     {/* Company Details Column */}
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                         <h3 className="mb-3">{jobDetails.company.name}</h3>
                         <p><strong>Industry:</strong> {jobDetails.company.industry}</p>
                         <p><strong>Employees:</strong> {jobDetails.company.employees}</p>
