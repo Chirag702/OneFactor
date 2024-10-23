@@ -1,4 +1,28 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+
+// Function to fetch user data from the REST API
+const fetchUserData = async (token) => {
+    const response = await fetch('https://api2.jobseekr.in/api/user/profile', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    console.log(token);
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw new Error("Unauthorized"); // Throw an error to be caught in the try-catch
+        } else {
+            const errorText = await response.text();
+            throw new Error(errorText);
+        }
+    }
+
+    return response.json(); // Return JSON if response is ok
+};
 
 const PrivateRoute = ({ children }) => {
     const [userData, setUserData] = useState(null);
@@ -75,5 +99,4 @@ const PrivateRoute = ({ children }) => {
 
     return children;
 };
-
 export default PrivateRoute;
