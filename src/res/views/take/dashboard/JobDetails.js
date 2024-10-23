@@ -6,9 +6,9 @@ const JobDetails = () => {
         <>
             <NavBar />
 
-            <div className="container-fluid container bg-white">
+            <div className="container-fluid container ">
 
-                <div className="col-lg-8 col-sm-12">
+                <div className="col-lg-8 col-sm-12 bg-white">
 
                     {/* Right Side: Job Details */}
                     <div className="description ms-3">
