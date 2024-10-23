@@ -55,6 +55,30 @@ const JobList = () => {
         return <div>Error: {error}</div>;
     }
 
+    // Pagination logic
+    const createPagination = () => {
+        const pagination = [];
+        const maxVisiblePages = 10;
+
+        for (let i = 0; i < totalPages; i++) {
+            if (i < maxVisiblePages) {
+                pagination.push(
+                    <Button
+                        key={i}
+                        onClick={() => setPage(i)}
+                        disabled={i === page}
+                        variant={i === page ? "primary" : "secondary"}
+                    >
+                        {i + 1}
+                    </Button>
+                );
+            } else if (i === maxVisiblePages && page < totalPages - maxVisiblePages) {
+                pagination.push(<span key="ellipsis">...</span>);
+            }
+        }
+        return pagination;
+    };
+
     // JSX to render job listings
     return (
         <div className="jobList">
@@ -87,19 +111,7 @@ const JobList = () => {
             ))}
             {/* Pagination Controls */}
             <div className="pagination">
-                <Button
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-                    disabled={page === 0}
-                >
-                    Previous
-                </Button>
-                <span> Page {page + 1} of {totalPages} </span>
-                <Button
-                    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
-                    disabled={page >= totalPages - 1}
-                >
-                    Next
-                </Button>
+                {createPagination()}
             </div>
         </div>
     );
