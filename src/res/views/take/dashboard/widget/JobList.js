@@ -104,9 +104,16 @@ const JobList = () => {
                         </p>
                     </div>
                     <div className="jobDetailButton ml-auto pr-2">
-                        <Button onClick={() => { navigate("/job/details") }} variant="primary" className="d-none d-lg-inline">
+                        <Button
+                            onClick={() => {
+                                navigate(`/job/details/${job.id}`); // Use backticks for the dynamic path
+                            }}
+                            variant="primary"
+                            className="d-none d-lg-inline"
+                        >
                             Apply
                         </Button>
+
                     </div>
                 </div>
             ))}
