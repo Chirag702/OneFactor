@@ -24,14 +24,7 @@ const JobDetails = () => {
                     <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-lg-8">
                         <div className="jobList">
                             <div className="jobPost align-items-start border p-3 mb-3">
-                                <div className="companyIcon">
-                                    <img
-                                        src="https://media.licdn.com/dms/image/v2/C4D0BAQGA6s2gCDu-MA/company-logo_200_200/company-logo_200_200/0/1630508225160/mphasis_logo?e=1737590400&amp;v=beta&amp;t=WqYBITVje9-fcZnDhvGSa5Rr9eIqkqVzu7MFT3MuefM"
-                                        alt="company logo"
-                                        className="img-fluid"
-                                        style={{ maxWidth: "100px" }}
-                                    />
-                                </div>
+
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
                                     <p>
@@ -64,16 +57,13 @@ const JobDetails = () => {
                                         </ul>
                                     </p>
                                 </div>
-                                <div className="jobDetailButton ms-auto">
-                                    <button type="button" className="btn btn-primary">
-                                        Apply
-                                    </button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div >
         </>
 
     );
