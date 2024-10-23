@@ -29,6 +29,7 @@ const RSignin = () => {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const from = location.state?.from || '/home'; // Ensure 'from' is defined inside the function
 
     const handleLogin = async (e) => {
         e.preventDefault(); // Prevent default form submission
