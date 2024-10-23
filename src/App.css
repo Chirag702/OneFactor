@@ -436,9 +436,15 @@ select {
     color: #40454A;
 }
 
-.filterAndAdds div {
+.filterAndAdds2 div {
     background-color: white;
      padding: 5%;
+}
+
+
+.filterAndAdds1 div {
+  background-color: white;
+   padding: 5%;
 }
 
 .filterAndAdds label {
