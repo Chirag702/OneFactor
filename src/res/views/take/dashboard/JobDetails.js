@@ -22,9 +22,9 @@ const JobDetails = () => {
                     </div>
 
                     {/* Right Side: Job Details */}
-                    <div id="availableJobs" className="mt-4 order-lg-2 order-1 col-lg-8">
+                    <div id="availableJobs" className="order-lg-2 order-1 col-lg-8">
                         <div className="jobList">
-                            <div className="bg-white p-3 mb-3">
+                            <div className="bg-tex p-3 mb-3">
 
                                 <div className="description ms-3">
                                     <h3>Software Engineer</h3>
