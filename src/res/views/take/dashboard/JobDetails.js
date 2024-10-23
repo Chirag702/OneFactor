@@ -70,6 +70,14 @@ const JobDetails = () => {
                 <div className="col-lg-7 col-sm-12 bg-white">
                     {/* Right Side: Job Details */}
                     <div className="description ms-3">
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <img
+                                src={jobs.companyDetails.logoUrl}
+                                alt={jobs.companyDetails.companyName}
+                                style={{ marginRight: '10px', width: '50px', height: '50px' }}
+                            />
+                            <span style={{ fontSize: '16px' }}>{jobs.companyDetails.companyName}</span>
+                        </div>
                         <h3>{jobs.title}</h3>
                         <p>
                             <span className="d-none d-lg-inline">Job available in </span>Bangalore
