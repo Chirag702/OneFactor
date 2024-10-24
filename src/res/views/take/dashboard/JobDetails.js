@@ -92,7 +92,7 @@ const JobDetails = () => {
                             <p><strong>Salary Range:</strong> {job.salaryRange}</p>
 
                             <h4>Description:</h4>
-                            {job.description}
+                            <p>      {job.description}</p>
 
 
                             <h4>Requirements:</h4> <p>{job.requirements}</p>
