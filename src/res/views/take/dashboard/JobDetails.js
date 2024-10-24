@@ -82,24 +82,44 @@ const JobDetails = () => {
                         <p>
                             <span className="d-none d-lg-inline">Job available in </span>{jobs.location}
                         </p>
-                        <p>
-                            <strong>Technical Skills:</strong>
-                            <br />
-                            {jobs.skillsRequired}
-                        </p>
-                        <p>
-                            <strong>Job Description:</strong>
-                            <br />
-                            {jobs.description}
-                        </p>
-                        <p>
-                            <strong>Requirements:</strong>
-                            <br />
-                            {jobs.requirements}
-                        </p>
-                        <ul>
+                        <div style={{ padding: '20px' }}>
+                            <h3>{job.title}</h3>
+                            <p><strong>Location:</strong> {job.location}</p>
+                            <p><strong>Posted Date:</strong> {job.postedDate}</p>
+                            <p><strong>Employment Type:</strong> {job.employmentType}</p>
+                            <p><strong>Industry:</strong> {job.industry}</p>
+                            <p><strong>Seniority Level:</strong> {job.seniorityLevel}</p>
+                            <p><strong>Salary Range:</strong> {job.salaryRange}</p>
 
-                        </ul>
+                            <h4>Technical Skills:</h4>
+                            <ul>
+                                {job.description.split('\n•').slice(1).map((skill, index) => (
+                                    <li key={index}>{skill.trim()}</li>
+                                ))}
+                            </ul>
+
+                            <p><strong>Requirements:</strong> {job.requirements}</p>
+
+                            <h4>Company Details:</h4>
+                            <div>
+                                <img src={job.companyDetails.logoUrl} alt={job.companyDetails.companyName} style={{ width: '100px', marginBottom: '10px' }} />
+                                <p><strong>Company Name:</strong> {job.companyDetails.companyName}</p>
+                                <p><strong>Description:</strong> {job.companyDetails.companyDescription}</p>
+                                <p><strong>Industry:</strong> {job.companyDetails.industry}</p>
+                                <p><strong>Company Size:</strong> {job.companyDetails.companySize}</p>
+                                <p><strong>Website:</strong> <a href={job.companyDetails.websiteUrl} target="_blank" rel="noopener noreferrer">{job.companyDetails.websiteUrl}</a></p>
+                            </div>
+
+                            <h4>Benefits:</h4>
+                            <p>{job.benefits}</p>
+
+                            <h4>Skills Required:</h4>
+                            <p>{job.skillsRequired}</p>
+
+                            <a href={job.applicationLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                Apply Now
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
