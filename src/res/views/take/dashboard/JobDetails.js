@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const JobDetails = () => {
     const { jobId } = useParams();
-    const [jobs, setJobs] = useState(null); // Initially set to null to handle empty state
+    const [job, setJob] = useState(null); // Initially set to null to handle empty state
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ const JobDetails = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setJobs(data); // Assuming the API returns { content: { title, skills, description, etc. } }
+                setJob(data); // Assuming the API returns { content: { title, skills, description, etc. } }
             } else {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
@@ -59,7 +59,7 @@ const JobDetails = () => {
     }
 
     // If no job details are found
-    if (!jobs) {
+    if (!job) {
         return <div>No job details found.</div>;
     }
 
@@ -72,15 +72,15 @@ const JobDetails = () => {
                     <div className="description ms-3">
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <img
-                                src={jobs.companyDetails.logoUrl}
-                                alt={jobs.companyDetails.companyName}
+                                src={job.companyDetails.logoUrl}
+                                alt={job.companyDetails.companyName}
                                 style={{ marginRight: '10px', width: '20px', height: '20px' }}
                             />
-                            <span style={{ fontSize: '16px' }}>{jobs.companyDetails.companyName}</span>
+                            <span style={{ fontSize: '16px' }}>{job.companyDetails.companyName}</span>
                         </div>
-                        <h3>{jobs.title}</h3>
+                        <h3>{job.title}</h3>
                         <p>
-                            <span className="d-none d-lg-inline">Job available in </span>{jobs.location}
+                            <span className="d-none d-lg-inline">Job available in </span>{job.location}
                         </p>
                         <div style={{ padding: '20px' }}>
                             <h3>{job.title}</h3>
