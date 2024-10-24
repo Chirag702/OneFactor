@@ -25,12 +25,14 @@
     "tabler": "^1.0.0-alpha.8",
     "web-vitals": "^2.1.4"
   },
+
   "scripts": {
-    "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build && javascript-obfuscator build/static/js --output build/static/js/",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "react-app-rewired start",
+  "build": "react-app-rewired build",
+  "test": "react-app-rewired test",
+  "eject": "react-scripts eject"
+},
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -52,6 +54,8 @@
   "devDependencies": {
     "javascript-obfuscator": "^4.1.1",
     "postcss": "^8.4.47",
-    "postcss-modules": "^6.0.0"
+    "postcss-loader": "^8.1.1",
+    "postcss-modules": "^6.0.0",
+    "react-app-rewired": "^2.2.1"
   }
 }
