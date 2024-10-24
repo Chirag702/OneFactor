@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
 // Helper function to extract 'onefactor' token from cookie
@@ -91,9 +91,9 @@ const RSignin = () => {
                     <p>
                         Don't have an account?
                         <span>
-                            <a href="../assets/signup.html" className="link_tag ml-2">
+                            <Link to="/r/signup" className="link_tag ml-2">
                                 Sign Up
-                            </a>
+                            </Link>
                         </span>
                     </p>
 
