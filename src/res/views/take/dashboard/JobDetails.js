@@ -91,10 +91,8 @@ const JobDetails = () => {
                             <p><strong>Seniority Level:</strong> {job.seniorityLevel}</p>
                             <p><strong>Salary Range:</strong> {job.salaryRange}</p>
 
-                            <h4>Technical Skills:</h4>
-                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                                {job.description}
-                            </ul>
+                            <h4>Description:</h4>
+                            {job.description}
 
 
                             <h4>Requirements:</h4> <p>{job.requirements}</p>
