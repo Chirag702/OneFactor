@@ -1,29 +1,28 @@
-// config-overrides.js
 module.exports = function override(config, env) {
-  // Find the index of the rule that handles CSS files
-  const cssRuleIndex = config.module.rules.findIndex(rule =>
-    rule.oneOf && rule.oneOf.some(r => r.test && r.test.test('.css'))
-  );
+  config.module.rules.forEach(rule => {
+    if (rule.oneOf) {
+      rule.oneOf.forEach(subRule => {
+        // Consider a more generic test for CSS-like files
+        if (subRule.test && /\.(css|module\.css|scss)$/.test(subRule.test.toString())) {
+          subRule.use = subRule.use.map(loader => {
+            if (loader.loader && loader.loader.includes('css-loader')) {
+              return {
+                loader: loader.loader,
+                options: {
+                  ...loader.options,
+                  modules: {
+                    localIdentName: '[hash:base64:5]', // Customize class name mangling
+                  }
+                }
+              };
+            }
+            // Return other loaders without modifying them
+            return loader;
+          });
+        }
+      });
+    }
+  });
 
-  if (cssRuleIndex > -1) {
-    const cssRule = config.module.rules[cssRuleIndex];
-
-    // Modify the css-loader options to enable CSS Modules
-    cssRule.oneOf.forEach(rule => {
-      if (rule.test && rule.test.test('.css')) {
-        rule.use.forEach(loader => {
-          if (loader.loader && loader.loader.includes('css-loader')) {
-            loader.options = {
-              ...loader.options,
-              modules: {
-                localIdentName: '[hash:base64:5]', // Customize class name mangling
-              },
-            };
-          }
-        });
-      }
-    });
-  }
-
-  return config; // Return the modified config
+  return config;
 };
