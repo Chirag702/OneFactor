@@ -27,7 +27,8 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build:css": "postcss src/index.css -o src/index.min.css",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -50,11 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^6.0.0",
-    "autoprefixer": "^10.4.20",
     "javascript-obfuscator": "^4.1.1",
     "postcss": "^8.4.47",
-    "postcss-cli": "^11.0.0",
     "postcss-loader": "^6.0.0",
     "postcss-modules": "^6.0.0",
     "react-app-rewired": "^2.2.1"
