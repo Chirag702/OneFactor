@@ -27,8 +27,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build:css": "postcss src/index.css -o src/index.min.css",
-    "build": "npm run build:css && react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
