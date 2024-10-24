@@ -114,8 +114,7 @@ const JobDetails = () => {
                             <h4>Benefits:</h4>
                             <p>{job.benefits}</p>
 
-                            <h4>Skills Required:</h4>
-                            <p>{job.skillsRequired}</p>
+
 
                             <a href={job.applicationLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                                 Apply Now
