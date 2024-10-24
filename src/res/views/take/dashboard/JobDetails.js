@@ -99,7 +99,7 @@ const JobDetails = () => {
                             </ul>
 
 
-                            <p><strong>Requirements:</strong> {job.requirements}</p>
+                            <p><strong>Requirements:</strong><br /> {job.requirements}</p>
 
                             <h4>Company Details:</h4>
                             <div>
