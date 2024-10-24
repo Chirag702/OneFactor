@@ -94,7 +94,7 @@ const JobDetails = () => {
                             <h4>Technical Skills:</h4>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                                 {job.description.split(/\n•|\n-/).slice(1).map((skill, index) => (
-                                    <li key={index}>{skill.trim()}</li>
+                                    <li key={index}><p>{skill.trim()}</p></li>
                                 ))}
                             </ul>
 
