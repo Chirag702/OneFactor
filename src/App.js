@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import RequestForm from './res/views/give/RequestForm';
 import Success from './res/views/give/Success';
 import JobDetails from './res/views/take/dashboard/JobDetails';
-import Terms from './res/views/common/terms';
+import Terms from './res/views/common/Terms';
 
 function App() {
   const navigate = useNavigate();
