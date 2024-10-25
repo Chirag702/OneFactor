@@ -82,7 +82,7 @@ function RSignup() {
                 <p>
                     If you are looking for a job,{' '}
                     <span>
-                        <a href="../assets/signup.html" className="link_tag">click here</a>
+                        <Link to="/r/signin" className="link_tag">click here</Link>
                     </span>
                 </p>
                 <Container className="">
