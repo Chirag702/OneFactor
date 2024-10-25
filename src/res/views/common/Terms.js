@@ -1,4 +1,5 @@
 import React from 'react'
+import NavBar from '../../components/NavBar'
 
 function Terms() {
     return (
@@ -7,7 +8,7 @@ function Terms() {
             <body className='container bg-white container-fluid p-3' style="font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; background-color: #f7f7f7;">
 
                 <h1 style="color: #003366;">OneFactor - Terms of Service</h1>
-                <p><strong>Effective Date:</strong> [Date]</p>
+                <p><strong>Effective Date:</strong> October 25, 2024</p>
 
                 <h2 style="color: #003366;">1. Acceptance of Terms</h2>
                 <p>By accessing and using the OneFactor job portal (the “Website”), you agree to comply with these Terms of Service (“Terms”) and our Privacy Policy. If you disagree with these Terms, please refrain from using our Website.</p>
@@ -44,10 +45,10 @@ function Terms() {
                 <p>OneFactor shall not be held liable for any direct, indirect, or consequential damages resulting from the use of the Website. Users agree to assume full responsibility for interactions with other users and organizations.</p>
 
                 <h2 style="color: #003366;">9. Governing Law and Jurisdiction</h2>
-                <p>These Terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in [City, State].</p>
+                <p>These Terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts.</p>
 
                 <h2 style="color: #003366;">10. Contact Information</h2>
-                <p>For questions, please contact us at [Contact Information].</p>
+                <p>For questions, please contact us at support@jobseekr.in</p>
 
             </body></div>
     )
