@@ -13,7 +13,7 @@ const RForgot = () => {
         setIsLoading(true);
         setMessage('');
 
-        const apiUrl = 'https://api2.onefactor.in/api/auth/forgot-password'; // Update with your actual API URL
+        const apiUrl = 'https://api2.onefactor.in/api/auth/forgot-password?email=' + email; // Update with your actual API URL
 
         try {
             const response = await fetch(apiUrl, {
@@ -21,7 +21,6 @@ const RForgot = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }), // Send the email in the body
             });
 
             const responseBody = await response.json();
