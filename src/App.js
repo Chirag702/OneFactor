@@ -84,7 +84,7 @@ function App() {
         }
       />
       <Route
-        path="terms"
+        path="/terms"
         element={
 
           <Terms />
