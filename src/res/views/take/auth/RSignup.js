@@ -143,8 +143,8 @@ function RSignup() {
                                 type="checkbox"
                                 label={
                                     <>
-                                        I agree to the <Link to="/terms" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Terms of Service</Link> and
-                                        <Link to="/privacy" target="_blank" style={{ color: 'blue', textDecoration: 'underline', marginLeft: '5px' }}>Privacy Policy</Link>.
+                                        I agree to the <Link to="/terms" target="_blank" className="link_tag" style={{ textDecoration: 'underline' }}>Terms of Service</Link> and
+                                        <Link to="/privacy" target="_blank" className="link_tag" style={{ textDecoration: 'underline', marginLeft: '5px' }}>Privacy Policy</Link>.
                                     </>
                                 }
                                 required

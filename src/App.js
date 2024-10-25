@@ -12,6 +12,7 @@ import RequestForm from './res/views/give/RequestForm';
 import Success from './res/views/give/Success';
 import JobDetails from './res/views/take/dashboard/JobDetails';
 import Terms from './res/views/common/Terms';
+import PrivacyPolicy from './res/views/common/PrivacyPolicy';
 
 function App() {
   const navigate = useNavigate();
@@ -90,6 +91,14 @@ function App() {
           <Terms />
         }
       />
+      <Route
+        path="/privacy"
+        element={
+
+          <PrivacyPolicy />
+        }
+      />
+
     </Routes>
   );
 }
