@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
-// Helper function to extract 'onefactor' token from cookie
-// Helper function to extract 'jobseekr' token from cookie
 const RForgot = () => {
-    const location = useLocation();
-
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState('');
     const navigate = useNavigate();
-    const from = location.state?.from || '/home'; // Ensure 'from' is defined inside the function
 
-    const handleLogin = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+    const handleSendEmail = async (e) => {
+        e.preventDefault();
         setIsLoading(true);
+        setMessage('');
 
-        const apiUrl = 'https://api2.onefactor.in/api/auth/signin';
-        const data = {
-            username: email,
-            email: email,
-            password: password,
-        };
+        const apiUrl = 'https://api2.onefactor.in/api/auth/forgot-password'; // Update with your actual API URL
 
         try {
             const response = await fetch(apiUrl, {
@@ -30,33 +21,21 @@ const RForgot = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify({ email }), // Send the email in the body
             });
-            const responseBody = await response.json(); // Read response body as text
+
+            const responseBody = await response.json();
 
             if (response.ok) {
-                console.log(responseBody.token);
-
-                const onefactorToken = await extractToken(responseBody.token);
-                console.log(onefactorToken);
-                if (onefactorToken) {
-                    console.log('onefactor Cookie:', onefactorToken);
-                    localStorage.clear();
-                    localStorage.setItem('token', onefactorToken);
-                    localStorage.setItem('isLoggedIn', 'true');
-
-                    // Redirect to another page
-
-                    // Redirect back to the intended page or home if no path is stored
-                    navigate(from, { replace: true });
-                } else {
-                    console.log('Token not found');
-                }
+                setMessage('Password reset email sent successfully! Check your inbox.');
+                // Optionally redirect after a delay or based on user action
+                setTimeout(() => navigate('/login'), 3000); // Redirect to login after 3 seconds
             } else {
-                console.log('Login failed:', response.status);
+                setMessage(`Error: ${responseBody.message || 'Failed to send email.'}`);
             }
         } catch (error) {
-            console.error('Error posting data:', error);
+            console.error('Error sending email:', error);
+            setMessage('An error occurred while sending the email.');
         } finally {
             setIsLoading(false);
         }
@@ -66,33 +45,26 @@ const RForgot = () => {
         <>
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
-                <div>
-                    <h2>Login</h2>
-
-                    <form onSubmit={handleLogin} autoComplete='true'>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type="email"
-                                id="login_email"
-                                name="email"
-                                required
-                                autoFocus
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)} // Fixed this line
-                            />
-
-                            <input type="submit" value={isLoading ? 'Logging in...' : 'Login'} disabled={isLoading} />
-                        </div>
-                        <a href="/reset-password" className="link_tag"> {/* Updated link for forgot password */}
-                            Forgot password?
-                        </a>
-                    </form>
-                </div>
+                <h2>Send Reset Email</h2>
+                <form onSubmit={handleSendEmail} autoComplete='true'>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="reset_email"
+                            name="email"
+                            required
+                            autoFocus
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} // Update email state
+                        />
+                        <input type="submit" value={isLoading ? 'Sending...' : 'Send Email'} disabled={isLoading} />
+                    </div>
+                    {message && <p>{message}</p>} {/* Display any message */}
+                </form>
             </div>
         </>
     );
 };
 
-
-export default RForgot
+export default RForgot;
