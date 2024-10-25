@@ -141,7 +141,12 @@ function RSignup() {
                         <Form.Group className="mb-1 d-flex align-items-center" controlId="agree">
                             <Form.Check
                                 type="checkbox"
-                                label="I agree to the Terms of Service and Privacy Policy."
+                                label={
+                                    <>
+                                        I agree to the <Link to="/terms" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Terms of Service</Link> and
+                                        <Link to="/privacy" target="_blank" style={{ color: 'blue', textDecoration: 'underline', marginLeft: '5px' }}>Privacy Policy</Link>.
+                                    </>
+                                }
                                 required
                                 style={{ marginRight: '10px' }}
                             />

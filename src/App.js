@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import RequestForm from './res/views/give/RequestForm';
 import Success from './res/views/give/Success';
 import JobDetails from './res/views/take/dashboard/JobDetails';
+import Terms from './res/views/common/terms';
 
 function App() {
   const navigate = useNavigate();
@@ -80,6 +81,13 @@ function App() {
           <PrivateRoute>
             <Success />
           </PrivateRoute>
+        }
+      />
+      <Route
+        path="terms"
+        element={
+
+          <Terms />
         }
       />
     </Routes>
