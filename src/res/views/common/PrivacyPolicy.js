@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
 const styles = {
     container: {
         width: '90%',
-        maxWidth: '800px',
+        maxWidth: '1000px',
         margin: '20px auto',
         padding: '20px',
         backgroundColor: '#fff',

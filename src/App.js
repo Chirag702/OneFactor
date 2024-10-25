@@ -13,6 +13,7 @@ import Success from './res/views/give/Success';
 import JobDetails from './res/views/take/dashboard/JobDetails';
 import Terms from './res/views/common/Terms';
 import PrivacyPolicy from './res/views/common/PrivacyPolicy';
+import RForgot from './res/views/take/auth/RForgot';
 
 function App() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
       <Route path="/" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <HomeScreen />} />
       <Route path="/r/signup" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignup />} />
       <Route path="/r/signin" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignin />} />
+      <Route path="/r/forgot" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RForgot />} />
 
       {/* Protected Routes (using PrivateRoute) */}
       <Route
@@ -98,6 +100,7 @@ function App() {
           <PrivacyPolicy />
         }
       />
+
 
     </Routes>
   );

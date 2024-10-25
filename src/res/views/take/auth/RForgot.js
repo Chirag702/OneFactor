@@ -4,27 +4,7 @@ import NavBar from '../../../components/NavBar';
 
 // Helper function to extract 'onefactor' token from cookie
 // Helper function to extract 'jobseekr' token from cookie
-const extractToken = (cookie) => {
-    console.error(cookie);
-    if (!cookie) return '';
-
-    const parts = cookie.split(';');
-    let jobseekrCookiePart;
-
-    try {
-        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
-    } catch (e) {
-        jobseekrCookiePart = null;
-    }
-
-    if (!jobseekrCookiePart) return '';
-
-    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
-    return jobseekrCookieValue;
-};
-
-
-const RSignin = () => {
+const RForgot = () => {
     const location = useLocation();
 
     const [email, setEmail] = useState('');
@@ -88,16 +68,7 @@ const RSignin = () => {
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <div>
                     <h2>Login</h2>
-                    <p>
-                        Don't have an account?
-                        <span>
-                            <Link to="/r/signup" className="link_tag ml-2">
-                                Sign Up
-                            </Link>
-                        </span>
-                    </p>
 
-                    {/* Form */}
                     <form onSubmit={handleLogin} autoComplete='true'>
                         <div>
                             <label htmlFor="email">Email</label>
@@ -110,24 +81,12 @@ const RSignin = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)} // Fixed this line
                             />
-                        </div>
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                id="login_password"
-                                name="password"
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                        <div>
+
                             <input type="submit" value={isLoading ? 'Logging in...' : 'Login'} disabled={isLoading} />
                         </div>
-                        <Link to="/r/forgot" className="link_tag"> {/* Updated link for forgot password */}
+                        <a href="/reset-password" className="link_tag"> {/* Updated link for forgot password */}
                             Forgot password?
-                        </Link>
+                        </a>
                     </form>
                 </div>
             </div>
@@ -135,4 +94,5 @@ const RSignin = () => {
     );
 };
 
-export default RSignin;
+
+export default RForgot
