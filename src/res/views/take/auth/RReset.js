@@ -21,16 +21,16 @@ const RReset = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     }
-                },);
+                });
                 if (!response.ok) {
                     setIsTokenValid(false);
                     setMessage('Invalid or expired token. Please request a new password reset.');
-                    isLoading(false)
                 }
             } catch (error) {
                 console.error('Error validating token:', error);
                 setIsTokenValid(false);
                 setMessage('An error occurred while validating the token.');
+            } finally {
                 setIsLoading(false);
             }
         };
@@ -39,7 +39,6 @@ const RReset = () => {
     }, [token]);
 
     const handleResetPassword = async (e) => {
-
         e.preventDefault();
         setIsLoading(true);
         setMessage('');
