@@ -49,29 +49,34 @@ const RReset = () => {
             return;
         }
 
+        if (!token) {
+            setMessage('Invalid or missing token.');
+            setIsLoading(false);
+            return;
+        }
+
         const apiUrl = `https://api2.onefactor.in/api/auth/reset-password?token=${token}`;
-        const payload = { newPassword: password };
 
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'text/plain', // Set content-type to plain text
                 },
-                body: JSON.stringify(payload),
+                body: password, // Send the raw password string only
             });
 
             const responseBody = await response.json();
 
             if (response.ok) {
-                setMessage('Password reset successfully! Redirecting to login.');
+                setMessage('Password reset successfully! Redirecting to login...');
                 setTimeout(() => navigate('/r/signin'), 3000);
             } else {
                 setMessage(`Error: ${responseBody.message || 'Failed to reset password.'}`);
             }
         } catch (error) {
             console.error('Error resetting password:', error);
-            setMessage('An error occurred while resetting the password.');
+            setMessage('An error occurred while resetting the password. Please try again later.');
         } finally {
             setIsLoading(false);
         }
