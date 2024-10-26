@@ -60,7 +60,7 @@ const RReset = () => {
 
             if (response.ok) {
                 setMessage('Password reset successfully! Redirecting to login.');
-                setTimeout(() => navigate('/login'), 3000);
+                setTimeout(() => navigate('/r/signin'), 3000);
             } else {
                 setMessage(`Error: ${responseBody.message || 'Failed to reset password.'}`);
             }

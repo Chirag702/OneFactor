@@ -28,7 +28,7 @@ const RForgot = () => {
             if (response.ok) {
                 setMessage('Password reset email sent successfully! Check your inbox.');
                 // Optionally redirect after a delay or based on user action
-                setTimeout(() => navigate('/login'), 3000); // Redirect to login after 3 seconds
+                setTimeout(() => navigate('/r/signin'), 3000); // Redirect to login after 3 seconds
             } else {
                 setMessage(`Error: ${responseBody.message || 'Failed to send email.'}`);
             }
