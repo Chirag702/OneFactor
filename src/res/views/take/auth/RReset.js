@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
 const RReset = () => {
-
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState('');
-    const { token } = useParams(); // Retrieve token from URL
+    const [isTokenValid, setIsTokenValid] = useState(true);
+    const { token } = useParams();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkTokenValidity = async () => {
+            const apiUrl = `https://api2.onefactor.in/api/auth/validate-token?token=${token}`;
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    setIsTokenValid(false);
+                    setMessage('Invalid or expired token. Please request a new password reset.');
+                }
+            } catch (error) {
+                console.error('Error validating token:', error);
+                setIsTokenValid(false);
+                setMessage('An error occurred while validating the token.');
+            }
+        };
+
+        checkTokenValidity();
+    }, [token]);
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         setMessage('');
 
-        // Check if password and confirm password match
         if (password !== confirmPassword) {
             setMessage('Passwords do not match');
             setIsLoading(false);
             return;
         }
 
-        const apiUrl = 'https://api2.onefactor.in/api/auth/reset-password?token=' + token;
+        const apiUrl = `https://api2.onefactor.in/api/auth/reset-password?token=${token}`;
         const payload = { newPassword: password };
 
         try {
@@ -39,7 +57,7 @@ const RReset = () => {
 
             if (response.ok) {
                 setMessage('Password reset successfully! Redirecting to login.');
-                setTimeout(() => navigate('/login'), 3000); // Redirect to login after 3 seconds
+                setTimeout(() => navigate('/login'), 3000);
             } else {
                 setMessage(`Error: ${responseBody.message || 'Failed to reset password.'}`);
             }
@@ -56,38 +74,42 @@ const RReset = () => {
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <h2>Reset Password</h2>
-                <form onSubmit={handleResetPassword} autoComplete='true'>
-                    <div>
-                        <label htmlFor="password">New Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} // Update password state
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            required
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)} // Update confirm password state
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="submit"
-                            value={isLoading ? 'Resetting...' : 'Reset Password'}
-                            disabled={isLoading}
-                        />
-                    </div>
-                    {message && <p>{message}</p>} {/* Display any message */}
-                </form>
+                {isTokenValid ? (
+                    <form onSubmit={handleResetPassword} autoComplete="true">
+                        <div>
+                            <label htmlFor="password">New Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                required
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="submit"
+                                value={isLoading ? 'Resetting...' : 'Reset Password'}
+                                disabled={isLoading}
+                            />
+                        </div>
+                        {message && <p>{message}</p>}
+                    </form>
+                ) : (
+                    <p>{message}</p>
+                )}
             </div>
         </>
     );
