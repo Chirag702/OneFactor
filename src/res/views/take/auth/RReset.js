@@ -25,6 +25,7 @@ const RReset = () => {
                 if (!response.ok) {
                     setIsTokenValid(false);
                     setMessage('Invalid or expired token. Please request a new password reset.');
+                    isLoading(false)
                 }
             } catch (error) {
                 console.error('Error validating token:', error);
