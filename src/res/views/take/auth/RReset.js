@@ -13,6 +13,7 @@ const RReset = () => {
 
     useEffect(() => {
         const checkTokenValidity = async () => {
+            setIsLoading(true);
             const apiUrl = `https://api2.onefactor.in/api/auth/validate-token?token=${token}`;
             try {
                 const response = await fetch(apiUrl);
@@ -24,6 +25,7 @@ const RReset = () => {
                 console.error('Error validating token:', error);
                 setIsTokenValid(false);
                 setMessage('An error occurred while validating the token.');
+                setIsLoading(false);
             }
         };
 
@@ -31,6 +33,7 @@ const RReset = () => {
     }, [token]);
 
     const handleResetPassword = async (e) => {
+
         e.preventDefault();
         setIsLoading(true);
         setMessage('');
@@ -74,7 +77,7 @@ const RReset = () => {
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <h2>Reset Password</h2>
-                {isTokenValid ? (
+                {isLoading ? "Loading..." : isTokenValid ? (
                     <form onSubmit={handleResetPassword} autoComplete="true">
                         <div>
                             <label htmlFor="password">New Password</label>
