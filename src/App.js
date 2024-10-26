@@ -14,6 +14,7 @@ import JobDetails from './res/views/take/dashboard/JobDetails';
 import Terms from './res/views/common/Terms';
 import PrivacyPolicy from './res/views/common/PrivacyPolicy';
 import RForgot from './res/views/take/auth/RForgot';
+import RReset from './res/views/take/auth/RReset';
 
 function App() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ function App() {
       <Route path="/r/signup" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignup />} />
       <Route path="/r/signin" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RSignin />} />
       <Route path="/r/forgot" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RForgot />} />
+      <Route path="/r/reset/password/:token" element={checkToken() ? <Navigate to={redirectAfterLogin} /> : <RReset />} />
 
       {/* Protected Routes (using PrivateRoute) */}
       <Route
