@@ -16,7 +16,12 @@ const RReset = () => {
             setIsLoading(true);
             const apiUrl = `https://api2.onefactor.in/api/auth/validate-token?token=${token}`;
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                },);
                 if (!response.ok) {
                     setIsTokenValid(false);
                     setMessage('Invalid or expired token. Please request a new password reset.');
