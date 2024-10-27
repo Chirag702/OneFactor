@@ -118,7 +118,7 @@ const JobList = () => {
                                 src={job.companyDetails?.logoUrl || 'default-logo.png'}
                                 alt="company logo"
                                 className="img-fluid"
-                                style={{ maxWidth: "80px" }}
+                                style={{ maxWidth: "120px" }}
                             />
                         </div>
 
