@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import { FaFilter } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const JobList = () => {
     const [jobs, setJobs] = useState([]);
@@ -102,7 +102,7 @@ const JobList = () => {
                         className="d-lg-none" // Only show on small screens
                         onClick={toggleFilters}
                         variant="link" // Use 'link' variant to remove border
-                        style={{ padding: 0 }} // Remove default padding
+                        style={{ padding: 10 }} // Remove default padding
                     >
                         <FaFilter size={16} color='black' /> {/* Icon only */}
                     </Button>
@@ -124,13 +124,28 @@ const JobList = () => {
 
                         {/* Job Description */}
                         <div className="description flex-grow-1">
-                            <h3 className="mb-1">{job.title}</h3>
-                            <p className="mb-1 text-muted">
-                                <span className="d-none d-lg-inline">Job available in </span>
-                                {job.location || 'N/A'}
-                            </p>   <p className="d-inline">
-                                {job.description.length > 120 ? job.description.substring(0, 120) + '...' : job.description}
-                            </p>
+
+                            <Link
+                                to={`/job/details/${job.id}`}
+                                className="job-card"
+                                style={{ textDecoration: 'none', color: 'inherit' }}  // Optional: to remove default link styles
+                            >
+                                <h3 className="mb-1">{job.title}</h3>
+                                <p className="mb-1 text-muted">
+                                    <span className="d-none d-lg-inline">Job available in </span>
+                                    {job.location || 'N/A'}
+                                </p>
+                                <p className="d-inline">
+                                    {job.description.length > 120
+                                        ? job.description.substring(0, 120) + '...'
+                                        : job.description}
+                                </p>
+                            </Link>
+
+
+
+
+
                         </div>
 
                         {/* Apply Button for Large Screens */}
@@ -138,7 +153,7 @@ const JobList = () => {
                             <Button
                                 onClick={() => navigate(`/job/details/${job.id}`)}
                                 variant="primary"
-                                className="d-block"
+                                className="d-lg-block d-none"
                             >
                                 Apply
                             </Button>
