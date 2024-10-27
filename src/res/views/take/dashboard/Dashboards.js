@@ -3,6 +3,7 @@ import NavBar from '../../../components/NavBar';
 import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap';
 import JobList from './widget/JobList';
 import { FaFilter } from 'react-icons/fa'; // Import an icon from react-icons
+import { Helmet } from 'react-helmet';
 
 function Dashboards() {
     const [showFilters, setShowFilters] = useState(false); // State for filter visibility

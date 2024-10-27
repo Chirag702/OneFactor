@@ -10,10 +10,14 @@ import JobSearch from '../../components/JobSearch';
 import HeroSection from '../../components/HeroSection';
 import JobSearchBenefits from '../../components/JobSearchBenifits';
 import Footer from '../../components/Footer';
+import { Helmet } from 'react-helmet';
 
 function HomeScreen() {
     return (
         <>
+            <Helmet>
+                <title>OneFactor</title>
+            </Helmet>
             <NavBar />
             <HeroSection />
 

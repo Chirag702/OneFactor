@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../../components/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const JobDetails = () => {
     const { jobId } = useParams();

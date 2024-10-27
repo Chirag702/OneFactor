@@ -4,6 +4,7 @@ import NavBar from '../../../components/NavBar';
 import { useNavigate } from 'react-router-dom'; // Add this for navigation
 import axios from 'axios'; // Use axios for API requests
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 const InitProfile = () => {
     const [formData, setFormData] = useState({

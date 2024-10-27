@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import NavBar from '../../../components/NavBar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const VerifyOtp = () => {
     const [otp, setOtp] = useState('');

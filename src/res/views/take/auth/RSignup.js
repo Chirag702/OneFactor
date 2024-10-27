@@ -3,6 +3,7 @@ import NavBar from '../../../components/NavBar';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 // Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);

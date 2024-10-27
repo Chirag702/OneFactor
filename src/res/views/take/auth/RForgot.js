@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
+import { Helmet } from 'react-helmet';
 
 const RForgot = () => {
     const [email, setEmail] = useState('');

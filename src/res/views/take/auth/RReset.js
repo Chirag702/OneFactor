@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
+import { Helmet } from 'react-helmet';
 
 const RReset = () => {
     const [password, setPassword] = useState('');

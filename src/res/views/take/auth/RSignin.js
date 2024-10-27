@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
+import { Helmet } from 'react-helmet';
 
 // Helper function to extract 'onefactor' token from cookie
 const extractToken = (cookie) => {
