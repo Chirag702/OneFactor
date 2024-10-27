@@ -119,6 +119,7 @@ const JobDetails = () => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 };

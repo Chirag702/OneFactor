@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../../components/NavBar';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, Modal } from 'react-bootstrap';
 import JobList from './widget/JobList';
+import { FaFilter } from 'react-icons/fa'; // Import an icon from react-icons
 
 function Dashboards() {
+    const [showFilters, setShowFilters] = useState(false); // State for filter visibility
+
+    const toggleFilters = () => {
+        setShowFilters(prev => !prev); // Toggle filter visibility
+    };
+
     return (
         <>
             <NavBar />
@@ -11,9 +18,8 @@ function Dashboards() {
             <Container fluid className='container'>
                 <Row>
                     {/* Filters Section */}
-                    <Col lg={4} className="filterAndAdds  p-1 order-lg-1 order-2">
+                    <Col lg={4} className="p-lg-1 filterAndAdds order-lg-1 order-1">
                         <div className="filter-section">
-
                             <h4>Quick tip</h4>
                             <p>
                                 Since not all companies will go ahead, we encourage you to apply
@@ -24,37 +30,20 @@ function Dashboards() {
                                 interview backouts will be shown to other companies!
                             </p>
                         </div>
-                        <div className="filter-section mt-2 p-4" >
-                            <Form.Label>Job type</Form.Label>
-                            <Form.Select aria-label="Default select example">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </Form.Select>
-
-                            <br />
-                            <Form.Label>Job type</Form.Label>
-                            <Form.Select aria-label="Default select example">
-                                <option>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </Form.Select>
-
-                        </div>
-
-
                     </Col>
 
                     {/* Jobs Section */}
-                    <Col lg={8} id="availableJobs" className="mt-4 order-lg-2 order-1">
-                        <JobList />
+                    {/* Jobs Section */}
+                    <Col lg={8} id="availableJobs" className="mt-4 order-lg-2 order-2">
 
-                        {/* Other job posts can follow in a similar way */}
+                        {/* Job List Component */}
+                        <JobList />
                     </Col>
+
                 </Row>
             </Container>
+
+            {/* Full-Screen Filter Modal */}
         </>
     );
 }

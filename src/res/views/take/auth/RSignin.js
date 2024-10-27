@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../../components/NavBar';
 
 // Helper function to extract 'onefactor' token from cookie
-// Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);
     if (!cookie) return '';
@@ -23,19 +22,19 @@ const extractToken = (cookie) => {
     return jobseekrCookieValue;
 };
 
-
 const RSignin = () => {
     const location = useLocation();
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(''); // State for error message
     const navigate = useNavigate();
     const from = location.state?.from || '/home'; // Ensure 'from' is defined inside the function
 
     const handleLogin = async (e) => {
         e.preventDefault(); // Prevent default form submission
         setIsLoading(true);
+        setErrorMessage(''); // Clear previous error message
 
         const apiUrl = 'https://api2.onefactor.in/api/auth/signin';
         const data = {
@@ -55,28 +54,23 @@ const RSignin = () => {
             const responseBody = await response.json(); // Read response body as text
 
             if (response.ok) {
-                console.log(responseBody.token);
-
                 const onefactorToken = await extractToken(responseBody.token);
-                console.log(onefactorToken);
                 if (onefactorToken) {
-                    console.log('onefactor Cookie:', onefactorToken);
                     localStorage.clear();
                     localStorage.setItem('token', onefactorToken);
                     localStorage.setItem('isLoggedIn', 'true');
 
                     // Redirect to another page
-
-                    // Redirect back to the intended page or home if no path is stored
                     navigate(from, { replace: true });
                 } else {
                     console.log('Token not found');
                 }
             } else {
-                console.log('Login failed:', response.status);
+                setErrorMessage('Invalid credentials. Please try again.'); // Set error message for invalid credentials
             }
         } catch (error) {
             console.error('Error posting data:', error);
+            setErrorMessage('An error occurred. Please try again later.'); // Set error message for any other error
         } finally {
             setIsLoading(false);
         }
@@ -97,6 +91,13 @@ const RSignin = () => {
                         </span>
                     </p>
 
+                    {/* Error Notification */}
+                    {errorMessage && (
+                        <div className="alert alert-danger" role="alert">
+                            {errorMessage}
+                        </div>
+                    )}
+
                     {/* Form */}
                     <form onSubmit={handleLogin} autoComplete='true'>
                         <div>
@@ -108,7 +109,7 @@ const RSignin = () => {
                                 required
                                 autoFocus
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)} // Fixed this line
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -125,7 +126,7 @@ const RSignin = () => {
                         <div>
                             <input type="submit" value={isLoading ? 'Logging in...' : 'Login'} disabled={isLoading} />
                         </div>
-                        <Link to="/r/forgot" className="link_tag"> {/* Updated link for forgot password */}
+                        <Link to="/r/forgot" className="link_tag">
                             Forgot password?
                         </Link>
                     </form>

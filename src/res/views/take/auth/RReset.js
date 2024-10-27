@@ -57,28 +57,44 @@ const RReset = () => {
 
         const apiUrl = `https://api2.onefactor.in/api/auth/reset-password?token=${token}`;
 
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain', // Set content-type to plain text
-                },
-                body: password, // Send the raw password string only
-            });
+        const handleResetPassword = async (e) => {
+            e.preventDefault();
+            setIsLoading(true);
+            setMessage('');
 
-            const responseBody = await response.json();
-
-            if (response.ok) {
-                setMessage('Password reset successfully! Redirecting to login...');
-                setTimeout(() => navigate('/r/signin'), 3000);
-            } else {
-                setMessage(`Error: ${responseBody.message || 'Failed to reset password.'}`);
+            if (password !== confirmPassword) {
+                setMessage('Passwords do not match');
+                setIsLoading(false);
+                return;
             }
-        } catch (error) {
-            console.error('Error resetting password:', error);
-            setMessage('An error occurred while resetting the password. Please try again later.');
-        } finally {
-            setIsLoading(false);
+
+            const apiUrl = `https://api2.onefactor.in/api/auth/reset-password?token=${token}`;
+
+            const payload = { newPassword: password }; // Create payload as JSON object
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Set content-type to JSON
+                    },
+                    body: JSON.stringify(payload), // Convert payload to JSON string
+                });
+
+                const responseBody = await response.json();
+
+                if (response.ok) {
+                    setMessage('Password reset successfully! Redirecting to login...');
+                    setTimeout(() => navigate('/r/signin'), 3000);
+                } else {
+                    setMessage(`Error: ${responseBody.message || 'Failed to reset password.'}`);
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                setMessage('An error occurred while resetting the password. Please try again later.');
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
