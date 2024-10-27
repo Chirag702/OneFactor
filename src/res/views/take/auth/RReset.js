@@ -100,6 +100,9 @@ const RReset = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Password reset | OneFactor</title>
+            </Helmet>
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <h2>Reset Password</h2>

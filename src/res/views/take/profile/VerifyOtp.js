@@ -73,6 +73,9 @@ const VerifyOtp = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Verify | OneFactor</title>
+            </Helmet>
             <NavBar />
             <Container id="main2" className="p-4 col-lg-6 mt-4">
                 <Form>

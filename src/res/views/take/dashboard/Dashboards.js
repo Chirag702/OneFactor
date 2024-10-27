@@ -13,6 +13,9 @@ function Dashboards() {
 
     return (
         <>
+            <Helmet>
+                <title>Jobs | OneFactor</title>
+            </Helmet>
             <NavBar />
 
             <Container fluid className='container'>

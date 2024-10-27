@@ -65,6 +65,9 @@ const JobDetails = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{job.title} | OneFactor</title>
+            </Helmet>
             <NavBar />
             <div className="container-fluid d-flex justify-content-center align-items-center pt-4">
                 <div className="col-lg-7 col-sm-12 bg-white">

@@ -42,6 +42,9 @@ const RForgot = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Forgot | OneFactor</title>
+            </Helmet>
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <h2>Send Reset Email</h2>

@@ -76,6 +76,9 @@ function RSignup() {
 
     return (
         <>
+            <Helmet>
+                <title>Signup | OneFactor</title>
+            </Helmet>
             <NavBar />
             <Container id="signup" className="col-lg-5 mt-5 p-3">
                 <h1>Ready to refer or get referred? Join now!</h1>

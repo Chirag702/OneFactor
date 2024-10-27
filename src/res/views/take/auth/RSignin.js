@@ -78,6 +78,10 @@ const RSignin = () => {
 
     return (
         <>
+
+            <Helmet>
+                <title>Signin | OneFactor</title>
+            </Helmet>
             <NavBar />
             <div className="col-lg-3 container mt-5 mb-auto p-3">
                 <div>
