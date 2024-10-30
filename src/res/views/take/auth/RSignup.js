@@ -4,6 +4,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import UserService from '../../../service/UserService';
 // Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
     console.error(cookie);
@@ -27,7 +28,7 @@ const extractToken = (cookie) => {
 function RSignup() {
     const [formData, setFormData] = useState({
         companyName: '',
-        companyRole: '',
+        yourRole: '',
         phone: '',
         email: '',
         password: '',
@@ -51,20 +52,18 @@ function RSignup() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('https://api2.onefactor.in/api/auth/signup', {
+            const response = await axios.post('https://api3.onefactor.in/auth/signup', {
                 username: formData.email,
                 email: formData.email,
                 password: formData.password,
-                companyName: formData.companyName,
-                companyRole: formData.companyRole,
-                phone: formData.phone,
             });
 
             if (response.status === 200) {
-                const token = response.data.token;
-                var realToken = extractToken(token)
-                localStorage.setItem('token', realToken);
-                navigate('/home'); // Navigate to email verification page
+                const token = await response.data.token;
+                var realToken = await extractToken(token)
+                await localStorage.setItem('token', realToken);
+                UserService.saveUser();
+
             } else {
                 setError('Failed to create account.');
             }
