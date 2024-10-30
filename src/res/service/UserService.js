@@ -16,7 +16,7 @@ class UserService {
         };
 
         try {
-            const response = await fetch("https://api3.onefactor.in/users/a", {
+            const response = await fetch("https://api3.onefactor.in/users/c", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
