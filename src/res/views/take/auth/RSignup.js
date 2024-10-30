@@ -107,7 +107,7 @@ function RSignup() {
                             <Form.Control
                                 type="text"
                                 placeholder="e.g. Talent Acquisition Specialist"
-                                value={formData.companyRole}
+                                value={formData.yourRole}
                                 onChange={handleInputChange}
                                 required
                             />
