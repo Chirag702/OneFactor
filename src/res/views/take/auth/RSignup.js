@@ -62,7 +62,9 @@ function RSignup() {
                 const token = await response.data.token;
                 var realToken = await extractToken(token)
                 await localStorage.setItem('token', realToken);
-                UserService.saveUser(formData.companyName, formData.yourRole, formData.phone, formData.email);
+                if (UserService.saveUser(formData.companyName, formData.yourRole, formData.phone, formData.email)) {
+                    navigate("/verifyOtp")
+                }
 
             } else {
                 setError('Failed to create account.');
