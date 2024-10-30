@@ -5,24 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import UserService from '../../../service/UserService';
+
 // Helper function to extract 'jobseekr' token from cookie
 const extractToken = (cookie) => {
-    console.error(cookie);
     if (!cookie) return '';
-
     const parts = cookie.split(';');
-    let jobseekrCookiePart;
-
-    try {
-        jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
-    } catch (e) {
-        jobseekrCookiePart = null;
-    }
-
-    if (!jobseekrCookiePart) return '';
-
-    const jobseekrCookieValue = jobseekrCookiePart.trim().substring('jobseekr='.length);
-    return jobseekrCookieValue;
+    const jobseekrCookiePart = parts.find((part) => part.trim().startsWith('jobseekr='));
+    return jobseekrCookiePart ? jobseekrCookiePart.trim().substring('jobseekr='.length) : '';
 };
 
 function RSignup() {
@@ -59,13 +48,22 @@ function RSignup() {
             });
 
             if (response.status === 200) {
-                const token = await response.data.token;
-                var realToken = await extractToken(token)
-                await localStorage.setItem('token', realToken);
-                if (UserService.saveUser(formData.companyName, formData.yourRole, formData.phone, formData.email)) {
-                    navigate("/verifyOtp")
-                }
+                const token = response.data.token;
+                const realToken = extractToken(token);
+                localStorage.setItem('token', realToken);
 
+                const userSaved = await UserService.saveUser(
+                    formData.companyName,
+                    formData.yourRole,
+                    formData.phone,
+                    formData.email
+                );
+
+                if (userSaved) {
+                    navigate("/verifyOtp");
+                } else {
+                    setError('Failed to save user details.');
+                }
             } else {
                 setError('Failed to create account.');
             }
@@ -90,7 +88,7 @@ function RSignup() {
                         <Link to="/r/signin" className="link_tag">click here</Link>
                     </span>
                 </p>
-                <Container className="">
+                <Container>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-1" controlId="companyName">
                             <Form.Label>Company Name</Form.Label>
@@ -102,7 +100,7 @@ function RSignup() {
                                 required
                             />
                         </Form.Group>
-                        <Form.Group className="mb-1" controlId="companyRole">
+                        <Form.Group className="mb-1" controlId="yourRole">
                             <Form.Label>Your Role</Form.Label>
                             <Form.Control
                                 type="text"
