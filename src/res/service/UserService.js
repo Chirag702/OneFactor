@@ -1,7 +1,7 @@
 class UserService {
 
 
-    static async saveUser(companyName, yourRole, phone) {
+    static async saveUser(companyName, yourRole, phone, email) {
         const authToken = localStorage.getItem("token");
 
         if (!authToken) {
@@ -12,7 +12,8 @@ class UserService {
         const requestBody = {
             companyName,
             yourRole,
-            phone
+            phone,
+            email
         };
 
         try {

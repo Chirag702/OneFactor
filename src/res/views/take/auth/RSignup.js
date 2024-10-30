@@ -62,7 +62,7 @@ function RSignup() {
                 const token = await response.data.token;
                 var realToken = await extractToken(token)
                 await localStorage.setItem('token', realToken);
-                UserService.saveUser();
+                UserService.saveUser(formData.companyName, formData.yourRole, formData.phone, formData.email);
 
             } else {
                 setError('Failed to create account.');
