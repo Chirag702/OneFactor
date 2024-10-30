@@ -36,7 +36,7 @@ const JobList = () => {
                 return;
             }
 
-            const response = await fetch(`http://onefactor.in:8082/api/v1/job?page=${pageNumber}&size=10`, {
+            const response = await fetch(`https://jobs.onefactor.in/api/v1/job?page=${pageNumber}&size=10`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -90,21 +90,7 @@ const JobList = () => {
 
     return (
         <>
-            <Row className="align-items-center justify-content-between d-lg-none mt-4">
-                <Col xs="auto">
-                    <span>{jobs.length} of {totalElements}</span>
-                </Col>
-                <Col xs="auto">
-                    <Button
-                        className="d-lg-none"
-                        onClick={toggleFilters}
-                        variant="link"
-                        style={{ padding: 10 }}
-                    >
-                        <FaFilter size={16} color='black' />
-                    </Button>
-                </Col>
-            </Row>
+
 
             <div className="mt-4">
                 {jobs.map((jobData) => {
