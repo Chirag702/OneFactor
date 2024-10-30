@@ -20,13 +20,14 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" className='text-white' />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav className="me-auto">
-                        {checkToken() ? <Nav.Link href="#home" className='text-white'>Activity</Nav.Link> : null}
-                        {checkToken() ? <Nav.Link href="#features" className='text-white'>Opportunities</Nav.Link> : null}
+
+                        {/* {checkToken() ? <Nav.Link href="#features" className='text-white'>Opportunities</Nav.Link> : null}
                         {checkToken() ? <Nav.Link href="#inbox" className='text-white'>Inbox</Nav.Link> : null}
-                        {checkToken() ? <Nav.Link href="#profile" className='text-white'>Profile</Nav.Link> : null}
-                        {checkToken() ? <Nav.Link href="#settings" className='text-white'>Settings</Nav.Link> : null}
+                        {checkToken() ? <Nav.Link href="#profile" className='text-white'><Link to="/r/profile" className="text-white">Profile</Link></Nav.Link> : null} */}
+
                         {checkToken() ? <Nav.Link onClick={() => signout()} className='text-white'>Sign out</Nav.Link> : null}
                         {checkToken() ? <Nav.Link className='text-white' style={{ backgroundColor: "#19927A" }}>
+
                             <Link to="/referrer/form" className="text-white" style={{ textDecoration: 'none' }}>For referrers</Link>
                         </Nav.Link> : null}
                         {!checkToken() ? <Nav.Link href="#signout" className='text-white'><Link to="/r/signin" className="text-white">Sign in</Link></Nav.Link> : null}

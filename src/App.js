@@ -10,11 +10,12 @@ import VerifyOtp from './res/views/take/profile/VerifyOtp';
 import PrivateRoute from './PrivateRoute';
 import RequestForm from './res/views/give/RequestForm';
 import Success from './res/views/give/Success';
-import JobDetails from './res/views/take/dashboard/JobDetails';
 import Terms from './res/views/common/Terms';
 import PrivacyPolicy from './res/views/common/PrivacyPolicy';
 import RForgot from './res/views/take/auth/RForgot';
 import RReset from './res/views/take/auth/RReset';
+import Profile from './res/views/take/profile/Profile';
+import CandidateOnboarding from './res/views/take/profile/widget/CandidateOnboarding';
 
 function App() {
   const navigate = useNavigate();
@@ -46,6 +47,25 @@ function App() {
       />
 
       <Route
+        path="/r/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+
+
+
+      <Route
+        path="/r/candidate/onboarding"
+        element={
+          <PrivateRoute>
+            <CandidateOnboarding />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/verifyOtp"
         element={
           <PrivateRoute>
@@ -72,14 +92,9 @@ function App() {
         }
       />
 
-      <Route
-        path="/job/details/:jobId"
-        element={
-          <PrivateRoute>
-            <JobDetails />
-          </PrivateRoute>
-        }
-      />
+
+
+
       <Route
         path="/referrer/success"
         element={
