@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 // Function to fetch user data from the REST API
-const fetchUserData = async (token) => {
-    const response = await fetch('https://api3.onefactor.in/users/profile', {
+const fetchUserVerified = async (token) => {
+    const response = await fetch('https://api3.onefactor.in/auth/is/email/verify', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     useEffect(() => {
-        const getUserData = async () => {
+        const getUserVerified = async () => {
             const token = localStorage.getItem('token');
 
             if (!token) {
@@ -44,7 +44,7 @@ const PrivateRoute = ({ children }) => {
             }
 
             try {
-                const data = await fetchUserData(token);
+                const data = await fetchUserVerified(token);
                 setUserData(data);
                 console.log(data);
                 localStorage.setItem('isEmailVerified', data.emailVerified ? 'true' : 'false');
