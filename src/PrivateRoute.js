@@ -4,7 +4,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 // Function to fetch user data from the REST API
 const fetchUserVerified = async (token) => {
     const response = await fetch('https://api3.onefactor.in/auth/is/email/verify', {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
