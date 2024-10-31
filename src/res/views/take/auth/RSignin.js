@@ -37,7 +37,7 @@ const RSignin = () => {
         setIsLoading(true);
         setErrorMessage(''); // Clear previous error message
 
-        const apiUrl = 'https://api2.onefactor.in/api/auth/signin';
+        const apiUrl = 'https://api3.onefactor.in/auth/signin';
         const data = {
             username: email,
             email: email,
