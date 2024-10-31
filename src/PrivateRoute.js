@@ -57,7 +57,7 @@ const PrivateRoute = ({ children }) => {
             }
         };
 
-        getUserVerified();
+        getUserData();
     }, [navigate, location.pathname]);
 
     if (loading) {
