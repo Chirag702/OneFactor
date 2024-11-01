@@ -45,7 +45,6 @@ const PrivateRoute = ({ children }) => {
             try {
                 const data = await fetchUserData(token);
                 setUserData(data);
-                console.log(data);
                 localStorage.setItem('isEmailVerified', data.emailVerified);
             } catch (err) {
                 setError(err.message);
@@ -73,30 +72,35 @@ const PrivateRoute = ({ children }) => {
         return null;
     }
 
-    const { fname, lname, gender } = userData;
-    const isEmailVerified = localStorage.getItem('isEmailVerified') === 'true';
+    const { fname, lname, gender, emailVerified } = userData;
 
-    if (location.pathname === '/verifyOtp') {
-        if (!isEmailVerified) {
-            return children;
+    if (!emailVerified) {
+        // If email is not verified, navigate to OTP verification unless already there
+        if (location.pathname !== '/verifyOtp') {
+            return <Navigate to="/verifyOtp" replace />;
         }
-        return <Navigate to="/home" replace />;
+        return children;
+    }
+
+    if (location.pathname === '/verifyOtp' && emailVerified) {
+        // If email is verified, navigate to home or profile init
+        return <Navigate to={fname && lname && gender ? "/home" : "/initProfile"} replace />;
     }
 
     if (location.pathname === '/initProfile') {
-        if (!isEmailVerified) {
-            return <Navigate to="/verifyOtp" replace />;
-        }
+        // If initializing profile, check if fields are present
         if (fname && lname && gender) {
             return <Navigate to="/home" replace />;
         }
         return children;
     }
 
+    // For all other routes, ensure profile details are filled
     if (!fname || !lname || !gender) {
         return <Navigate to="/initProfile" replace />;
     }
 
     return children;
 };
+
 export default PrivateRoute;
