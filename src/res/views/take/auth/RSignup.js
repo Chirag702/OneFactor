@@ -52,6 +52,7 @@ function RSignup() {
                 const realToken = extractToken(token);
                 localStorage.setItem('token', realToken);
 
+                console.log(realToken);
                 const userSaved = await UserService.saveUser(
                     formData.companyName,
                     formData.yourRole,
