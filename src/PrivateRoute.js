@@ -3,7 +3,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 // Function to fetch user data from the REST API
 const fetchUserData = async (token) => {
-    const response = await fetch('https://api3.onefactor.in/user/profile', {
+    const response = await fetch('https://api3.onefactor.in/users/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
