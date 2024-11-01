@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 // Function to fetch user data from the REST API
-const fetchUserVerified = async (token) => {
+const fetchUserData = async (token) => {
     const response = await fetch('https://api3.onefactor.in/user/profile', {
         method: 'GET',
         headers: {
@@ -11,7 +11,6 @@ const fetchUserVerified = async (token) => {
         },
     });
 
-    console.log(token);
     if (!response.ok) {
         if (response.status === 401) {
             throw new Error("Unauthorized"); // Throw an error to be caught in the try-catch
@@ -44,7 +43,7 @@ const PrivateRoute = ({ children }) => {
             }
 
             try {
-                const data = await fetchUserVerified(token);
+                const data = await fetchUserData(token);
                 setUserData(data);
                 console.log(data);
                 localStorage.setItem('isEmailVerified', data.emailVerified);
