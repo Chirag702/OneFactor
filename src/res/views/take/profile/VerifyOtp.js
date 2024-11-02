@@ -55,22 +55,51 @@ const VerifyOtp = () => {
             );
             console.log(response)
             if (response.status === 200) {
-                console.log('OTP verified:', response.data);
 
-                // Update the email verification status in localStorage
-                localStorage.setItem('isEmailVerified', 'true');
-                navigate("/initProfile");
 
-                // Redirect to home after successful verification
-            } else {
-                console.error('OTP verification failed');
+
+                try {
+                    const response = await axios.post(
+                        'https://api3.onefactor.in/users/update',
+                        { "otp": otp },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                'Content-Type': 'application/json',
+                            },
+                        }
+                    );
+                    console.log(response)
+                    if (response.status === 200) {
+
+                        console.log('OTP verified:', response.data);
+
+                        // Update the email verification status in localStorage
+                        localStorage.setItem('isEmailVerified', 'true');
+                        navigate("/initProfile");
+
+                        // Redirect to home after successful verification
+                    } else {
+                        console.error('OTP verification failed');
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                } finally {
+                    setIsLoading(false);
+                }
             }
+
+
+
         } catch (error) {
             console.error('Error:', error);
         } finally {
             setIsLoading(false);
         }
-    };
+    }
+
+        ;
 
     return (
         <>
