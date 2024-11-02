@@ -54,7 +54,6 @@ const InitProfile = () => {
             );
 
             if (response.status === 200) {
-                console.log(response.data);
                 navigate('/home'); // Update to your main route
             }
         } catch (error) {

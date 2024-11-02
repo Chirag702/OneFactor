@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 
 // Helper function to extract 'onefactor' token from cookie
 const extractToken = (cookie) => {
-    console.error(cookie);
     if (!cookie) return '';
 
     const parts = cookie.split(';');
