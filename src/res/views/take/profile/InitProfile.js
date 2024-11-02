@@ -41,7 +41,7 @@ const InitProfile = () => {
 
         try {
             const response = await axios.post(
-                "https://api2.onefactor.in/api/user/init/profile",
+                "https://api3.onefactor.in/users/init/profile",
                 {
                     fname,
                     lname,
