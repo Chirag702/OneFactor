@@ -54,7 +54,7 @@ const VerifyOtp = () => {
                 }
             );
 
-            if (otpResponse.status === 200 && otpResponse.data.isEmailVerified) {
+            if (otpResponse.status === 200) {
                 // Update the user's profile after OTP verification
                 const profileUpdateResponse = await axios.put(
                     'https://api3.onefactor.in/users/update',
