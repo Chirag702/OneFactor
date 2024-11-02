@@ -73,9 +73,9 @@ const PrivateRoute = ({ children }) => {
         return null;
     }
 
-    const { fname, lname, gender, emailVerified } = userData;
+    const { fname, lname, gender, isEmailVerified } = userData;
 
-    if (!emailVerified) {
+    if (!isEmailVerified) {
         // If email is not verified, navigate to OTP verification unless already there
         if (location.pathname !== '/verifyOtp') {
             return <Navigate to="/verifyOtp" replace />;
@@ -83,7 +83,7 @@ const PrivateRoute = ({ children }) => {
         return children;
     }
 
-    if (location.pathname === '/verifyOtp' && emailVerified) {
+    if (location.pathname === '/verifyOtp' && isEmailVerified) {
         // If email is verified, navigate to home or profile init
         return <Navigate to={fname && lname && gender ? "/home" : "/initProfile"} replace />;
     }
