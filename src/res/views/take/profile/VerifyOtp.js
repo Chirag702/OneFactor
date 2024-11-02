@@ -22,6 +22,8 @@ const VerifyOtp = () => {
             });
             if (response.status === 200) {
                 setEmail(response.data.email);
+
+
             } else {
                 console.error('Failed to fetch email');
             }

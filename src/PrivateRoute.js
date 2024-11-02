@@ -44,6 +44,7 @@ const PrivateRoute = ({ children }) => {
 
             try {
                 const data = await fetchUserData(token);
+                console.log(data);
                 setUserData(data);
                 localStorage.setItem('isEmailVerified', data.isEmailVerified);
             } catch (err) {
