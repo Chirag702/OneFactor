@@ -12,24 +12,25 @@ const VerifyOtp = () => {
     const navigate = useNavigate();
 
     // Fetch email from API
-    useEffect(() => {
-        const fetchEmail = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get('https://api3.onefactor.in/users/profile', {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                if (response.status === 200) {
-                    setEmail(response.data.email);
-                } else {
-                    console.error('Failed to fetch email');
-                }
-            } catch (error) {
-                console.error('Error fetching email:', error);
+    const fetchEmail = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get('https://api3.onefactor.in/users/profile', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                setEmail(response.data.email);
+            } else {
+                console.error('Failed to fetch email');
             }
-        };
+        } catch (error) {
+            console.error('Error fetching email:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchEmail();
     }, []);
 
@@ -42,10 +43,9 @@ const VerifyOtp = () => {
         const token = localStorage.getItem('token');
 
         try {
-            // Verify OTP
-            const otpResponse = await axios.post(
+            const response = await axios.post(
                 'https://api3.onefactor.in/auth/verify/email',
-                { otp },
+                { "otp": otp },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -53,36 +53,70 @@ const VerifyOtp = () => {
                     },
                 }
             );
+            console.log(response)
+            if (response.status === 200) {
 
-            if (otpResponse.status === 200) {
-                // Update the user's profile after OTP verification
-                const profileUpdateResponse = await axios.put(
-                    'https://api3.onefactor.in/users/update',
-                    { isEmailVerified: true },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'Content-Type': 'application/json',
-                        },
+
+
+                try {
+                    const response = await axios.post(
+                        'https://api3.onefactor.in/auth/verify/email',
+                        { "otp": otp },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                'Content-Type': 'application/json',
+                            },
+                        }
+                    );
+                    console.log(response)
+                    if (response.status === 200) {
+
+                        console.log('OTP verified:', response.data);
+
+                        // Update the email verification status in localStorage
+                        localStorage.setItem('isEmailVerified', 'true');
+                        navigate("/initProfile");
+                        const profileUpdateResponse = await axios.put(
+                            'https://api3.onefactor.in/users/update',
+                            { isEmailVerified: true },
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                    'Content-Type': 'application/json',
+                                },
+                            }
+                        );
+
+                        if (profileUpdateResponse.status === 200) {
+                            localStorage.setItem('isEmailVerified', 'true');
+                            navigate('/initProfile');
+                        } else {
+                            console.error('Profile update failed');
+                        }
+
+                        // Redirect to home after successful verification
+                    } else {
+                        console.error('OTP verification failed');
                     }
-                );
 
-                if (profileUpdateResponse.status === 200) {
-                    localStorage.setItem('isEmailVerified', 'true');
-                    navigate('/initProfile');
-                } else {
-                    console.error('Profile update failed');
+                } catch (error) {
+                    console.error('Error:', error);
+                } finally {
+                    setIsLoading(false);
                 }
-            } else {
-                console.error('OTP verification failed');
             }
+
+
+
         } catch (error) {
-            console.error('Error verifying OTP or updating profile:', error);
-            alert('Verification failed. Please check the OTP and try again.');
+            console.error('Error:', error);
         } finally {
             setIsLoading(false);
         }
-    };
+    }
+
+        ;
 
     return (
         <>
@@ -91,9 +125,9 @@ const VerifyOtp = () => {
             </Helmet>
             <NavBar />
             <Container id="main2" className="p-4 col-lg-6 mt-4">
-                <Form onSubmit={(e) => { e.preventDefault(); verifyOtp(); }}>
+                <Form>
                     <h1>Verify OTP</h1>
-                    <p>Please enter the OTP sent to your email ({email}).</p>
+                    <p>Please enter the OTP sent to your email.</p>
                     <hr />
                     <Row>
                         <Col>
@@ -112,7 +146,7 @@ const VerifyOtp = () => {
                     <hr />
                     <Button
                         variant="primary"
-                        type="submit"
+                        onClick={verifyOtp}
                         disabled={isLoading}
                     >
                         {isLoading ? 'Verifying...' : 'Verify OTP'}
