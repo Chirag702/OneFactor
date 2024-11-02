@@ -40,7 +40,7 @@ const InitProfile = () => {
         }
 
         try {
-            const response = await axios.post(
+            const response = await axios.PUT(
                 "https://api3.onefactor.in/users/update",
                 {
                     fname,
