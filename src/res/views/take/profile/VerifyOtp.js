@@ -53,7 +53,6 @@ const VerifyOtp = () => {
                     },
                 }
             );
-            console.log(response)
             if (response.status === 200) {
 
 
@@ -69,7 +68,6 @@ const VerifyOtp = () => {
                             },
                         }
                     );
-                    console.log(response)
                     if (response.status === 200) {
 
                         console.log('OTP verified:', response.data);
