@@ -15,7 +15,7 @@ const VerifyOtp = () => {
     const fetchEmail = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('https://api3.onefactor.in/user/profile', {
+            const response = await axios.get('https://api3.onefactor.in/users/profile', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
