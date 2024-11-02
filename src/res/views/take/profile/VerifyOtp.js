@@ -61,7 +61,7 @@ const VerifyOtp = () => {
 
 
                 try {
-                    const response = await axios.post(
+                    const response = await axios.put(
                         'https://api3.onefactor.in/users/update',
                         { "otp": otp },
                         {
